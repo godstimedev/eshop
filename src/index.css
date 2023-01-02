@@ -4,21 +4,21 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800&display=swap');
 
+@layer components {
+	h1 {
+		@apply font-bold text-[1.6rem] md:text-[2.2rem];
+	}
+}
+
 body {
 	font-family: 'Nunito';
 }
-h1 {
-	font-weight: 700;
-	/* font-size: 2.2rem; */
-}
 
 button {
-	/* width: 130px; */
 	height: 40px;
 	font-weight: 700;
 	font-size: 16px;
 	text-transform: uppercase;
-	/* line-height: 16px; */
 }
 
 .navItems {
@@ -38,9 +38,3 @@ button {
 	background: rgba(0, 0, 0, 0.36);
 	backdrop-filter: blur(17px);
 }
-
-/* @layer components {
-	.navItems {
-		@apply;
-	}
-} */
