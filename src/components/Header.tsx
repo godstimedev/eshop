@@ -11,7 +11,6 @@ type Props = {};
 
 function Header({}: Props) {
 	const [nav, setNav] = useState(false);
-	console.log(nav);
 
 	return (
 		<header className="w-full flex justify-between lg:flex-col lg:gap-4 items-center p-4">
