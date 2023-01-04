@@ -20,7 +20,7 @@ function Header({}: Props) {
 				className={
 					nav
 						? ` transform translate-x-[0%] transition-all duration-500 fixed top-0 left-0 bottom-0 bg-white w-[60%] p-4 z-10`
-						: ` transform translate-x-[-100%] transition-all duration-500 fixed top-0 left-0 bottom-0  w-[60%]  bg-white p-4`
+						: ` transform translate-x-[-100%] transition-all duration-500 fixed top-0 left-0 bottom-0  w-[60%]  bg-white p-4 z-10`
 				}
 			>
 				<div className="flex flex-col gap-[6rem] my-[1.4rem]">

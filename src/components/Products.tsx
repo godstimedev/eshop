@@ -1,14 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ProductOne from '../assets/images/productOne.png';
 import ProductTwo from '../assets/images/productTwo.png';
 import ProductThree from '../assets/images/productThree.png';
 import ProductFour from '../assets/images/productFour.png';
 
-import productData from '../data/productData.json';
+// svg
+import { ReactComponent as ArrowLeft } from '../assets/svg/ArrowLeft.svg';
+import { ReactComponent as ArrowRight } from '../assets/svg/ArrowRight.svg';
+
+import { productData } from '../data/productData';
 
 type Props = {};
 
 function Products({}: Props) {
+	const [currentIndex, setCurrentIndex] = useState(0);
+
+	const prevSlide = () => {
+		const isFirstSlide = currentIndex === 0;
+		const nextIndex = isFirstSlide ? productData.length - 1 : currentIndex - 1;
+		setCurrentIndex(nextIndex);
+	};
+
+	const nextSlide = () => {
+		const isLastSlide = currentIndex === 3;
+		const nextIndex = isLastSlide ? productData.length - 4 : currentIndex + 1;
+		setCurrentIndex(nextIndex);
+	};
+
+	const goToSlide = (index: number) => {
+		setCurrentIndex(index);
+	};
+
 	return (
 		<section className="min-h-screen py-[4rem] px-[4rem] ">
 			<div className="flex flex-col gap-4 items-center">
@@ -61,7 +83,34 @@ function Products({}: Props) {
 			</div>
 
 			{/* for small screens */}
-			<div className="md:hidden"></div>
+			<div className="md:hidden group relative h-[60vh] mt-6">
+				<div className="w-full flex justify-between items-center absolute top-[40%] z-10">
+					<ArrowLeft className="cursor-pointer hidden group-hover:block" onClick={() => prevSlide()} />
+					<ArrowRight className="cursor-pointer hidden group-hover:block" onClick={() => nextSlide()} />
+				</div>
+
+				<div className="relative row-span-2 h-[100%] w-[100%] flex flex-col items-center ease-in-out duration-500">
+					<img src={productData[currentIndex].img} alt="/" className="h-[95%] w-[100%] object-cover " />
+					<div className="absolute bottom-0 bg-[#111010] text-white text-center p-4 w-[95%] mx-auto place-items-center">
+						<h2 className="text-[1.65rem] leading-[1.65rem]">{productData[currentIndex].title}</h2>
+						<p className="text-[#B4B4B4] text-[14px]">{productData[currentIndex].description}</p>
+					</div>
+				</div>
+
+				<div className="flex gap-2 justify-center my-4">
+					{productData.map((item, index) => (
+						<div
+							key={index}
+							onClick={() => goToSlide(index)}
+							className={
+								index === currentIndex
+									? 'w-2 h-2 bg-[#333] cursor-pointer'
+									: 'w-2 h-2 bg-gray-400 cursor-pointer'
+							}
+						></div>
+					))}
+				</div>
+			</div>
 		</section>
 	);
 }
