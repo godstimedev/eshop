@@ -31,6 +31,13 @@ function Products({}: Props) {
 		setCurrentIndex(index);
 	};
 
+	// const scroll = document.getElementById('container');
+	// scroll?.scrollTo({
+	// 	left: currentIndex === 0 ? 0 : currentIndex - 1,
+	// 	behavior: 'smooth',
+	// });
+	// console.log(scroll);
+
 	return (
 		<section className="min-h-screen py-[4rem] px-[4rem] ">
 			<div className="flex flex-col gap-4 items-center">
@@ -89,7 +96,10 @@ function Products({}: Props) {
 					<ArrowRight className="cursor-pointer hidden group-hover:block" onClick={() => nextSlide()} />
 				</div>
 
-				<div className="relative row-span-2 h-[100%] w-[100%] flex flex-col items-center ease-in-out duration-500">
+				<div
+					className="relative row-span-2 h-[100%] w-[100%] flex flex-col items-center ease-in-out duration-500"
+					id="container"
+				>
 					<img src={productData[currentIndex].img} alt="/" className="h-[95%] w-[100%] object-cover " />
 					<div className="absolute bottom-0 bg-[#111010] text-white text-center p-4 w-[95%] mx-auto place-items-center">
 						<h2 className="text-[1.65rem] leading-[1.65rem]">{productData[currentIndex].title}</h2>

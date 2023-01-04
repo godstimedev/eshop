@@ -5,7 +5,7 @@ type Props = {};
 
 function Collections({}: Props) {
 	return (
-		<section className="min-h-screen py-[2rem] px-[4rem] ">
+		<section className="min-h-screen pb-[2rem] px-[4rem] hidden md:block">
 			<div className="flex flex-col gap-4 items-center">
 				<h1 className=" ">Tile Collections</h1>
 				<div className="w-[110px] border-b-4 border-[#C4C4C4]" />
