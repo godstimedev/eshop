@@ -63,16 +63,14 @@ function Products({}: Props) {
 				<div className="relative row-span-2 h-[75vh]  flex flex-col items-center">
 					<img src={ProductTwo} alt="/" className="h-[95%] w-[100%]" />
 					<div className="absolute bottom-0 bg-[#111010] text-white text-center p-4 max-w-[95%] mx-auto place-items-center">
-						<h2 className="text-[1.65rem] leading-[1.65rem]">Bathroom Tiles</h2>
-						<p className="text-[#B4B4B4] text-[14px]">
-							Ante mus blandit sapien sociosqu per consequat ad.
-						</p>
+						<h2 className="text-[1.65rem] leading-[1.65rem]">Marble</h2>
+						<p className="text-[#B4B4B4] text-[14px]">Ante mus blandit sapien sociosqu</p>
 					</div>
 				</div>
 				<div className="relative row-span-1  flex flex-col items-center">
 					<img src={ProductThree} alt="/" className="h-[85%] w-[100%]" />
 					<div className="absolute bottom-0 bg-[#111010] text-white text-center p-4 max-w-[95%] mx-auto place-items-center">
-						<h2 className="text-[1.65rem] leading-[1.65rem]">Bathroom Tiles</h2>
+						<h2 className="text-[1.65rem] leading-[1.65rem]">Outdoor Flooring</h2>
 						<p className="text-[#B4B4B4] text-[14px]">
 							Ante mus blandit sapien sociosqu per consequat ad.
 						</p>
@@ -81,7 +79,7 @@ function Products({}: Props) {
 				<div className="relative row-span-1  flex flex-col items-center">
 					<img src={ProductFour} alt="/" className="h-[89%] w-[100%]" />
 					<div className="absolute bottom-0 bg-[#111010] text-white text-center p-4 max-w-[95%] mx-auto place-items-center">
-						<h2 className="text-[1.65rem] leading-[1.65rem]">Bathroom Tiles</h2>
+						<h2 className="text-[1.65rem] leading-[1.65rem]">Kitchen Interior</h2>
 						<p className="text-[#B4B4B4] text-[14px]">
 							Ante mus blandit sapien sociosqu per consequat ad.
 						</p>
