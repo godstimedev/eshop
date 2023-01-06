@@ -10,20 +10,48 @@ type Props = {};
 
 function ProductDetails({}: Props) {
 	const [active, setActive] = useState(1);
+	const [activeImg, setActiveImg] = useState(1);
 
 	return (
-		<main className="px-[6rem] my-[3rem] flex flex-col gap-[6rem]">
-			<section className="flex gap-8">
-				<div className="w-[50%] flex flex-col gap-4">
-					<img src={ProductImg} alt="/" />
+		<main className="px-[2rem] lg:px-[6rem] my-[3rem] flex flex-col gap-[6rem]">
+			<section className="flex flex-col md:flex-row gap-8">
+				<div className="w-full md:w-[50%] flex justify-center flex-col gap-4">
+					{activeImg === 1 && <img src={ProductImg} alt="/" className="w-fit h-[60vh] object-cover" />}
+					{activeImg === 2 && <img src={ProductOne} alt="/" className="w-full h-[60vh] object-cover" />}
+					{activeImg === 3 && <img src={ProductTwo} alt="/" className="w-full h-[60vh] object-cover" />}
+					{activeImg === 4 && (
+						<img src={ProductThree} alt="/" className="w-full h-[60vh] object-cover" />
+					)}
+
 					<div className="flex gap-8 justify-center">
-						<img src={ProductOne} alt="/" className="h-[100px] w-[120px] cursor-pointer" />
-						<img src={ProductTwo} alt="/" className="h-[100px] w-[120px] cursor-pointer" />
-						<img src={ProductThree} alt="/" className="h-[100px] w-[120px] cursor-pointer" />
+						<img
+							src={ProductImg}
+							alt="/"
+							className="h-[60px] w-[80px] lg:h-[100px] lg:w-[120px] cursor-pointer object-cover"
+							onClick={() => setActiveImg(1)}
+						/>
+						<img
+							src={ProductOne}
+							alt="/"
+							className="h-[60px] w-[80px] lg:h-[100px] lg:w-[120px] cursor-pointer object-cover"
+							onClick={() => setActiveImg(2)}
+						/>
+						<img
+							src={ProductTwo}
+							alt="/"
+							className="h-[60px] w-[80px] lg:h-[100px] lg:w-[120px] cursor-pointer object-cover"
+							onClick={() => setActiveImg(3)}
+						/>
+						<img
+							src={ProductThree}
+							alt="/"
+							className="h-[60px] w-[80px] lg:h-[100px] lg:w-[120px] cursor-pointer object-cover"
+							onClick={() => setActiveImg(4)}
+						/>
 					</div>
 				</div>
 
-				<div className="w-[50%] flex flex-col gap-[4rem]">
+				<div className="w-full md:w-[50%] flex flex-col gap-[4rem]">
 					<div>
 						{' '}
 						<h1>Product Name</h1>
@@ -42,7 +70,7 @@ function ProductDetails({}: Props) {
 								<span>1</span>
 								<span className="cursor-pointer">+</span>
 							</div>
-							<button className="bg-[#22222B] text-white px-6">Add to cart</button>
+							<button className="bg-[#22222B] text-white px-6 text-sm md:font-xl">Add to cart</button>
 							<button className="border border-[#000] px-2">
 								<Like />
 							</button>
