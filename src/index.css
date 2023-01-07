@@ -44,3 +44,8 @@ button {
 	background: rgba(0, 0, 0, 0.36);
 	backdrop-filter: blur(17px);
 }
+
+/* .cart--navigation {
+	background: linear-gradient(180deg, #c4c4c4 0%, rgba(196, 196, 196, 0) 100%);
+	opacity: 0.1;
+} */
