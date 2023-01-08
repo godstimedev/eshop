@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import Logo from '../assets/images/logoBlack.png';
 import { ReactComponent as Search } from '../assets/svg/Search.svg';
 import { ReactComponent as Cart } from '../assets/svg/Cart.svg';
@@ -42,6 +42,7 @@ function Header({}: Props) {
 			<div>
 				<img src={Logo} alt="Logo" className="cursor-pointer" />
 			</div>
+
 			<nav className="hidden lg:flex items-center space-x-10">
 				<Search className="cursor-pointer" />
 				<ul className="flex space-x-5">
@@ -56,13 +57,17 @@ function Header({}: Props) {
 					<li className="navItems cursor-pointer">Contact</li>
 				</ul>
 				<div className="flex space-x-5">
-					<Cart className="cursor-pointer" />
+					<Link to="/cart">
+						<Cart className="cursor-pointer" />
+					</Link>
 					<Like className="cursor-pointer" />
 					<Avatar className="cursor-pointer" />
 				</div>
 			</nav>
 			<div className=" lg:hidden flex space-x-5 ">
-				<Cart className="cursor-pointer" />
+				<Link to="/cart">
+					<Cart className="cursor-pointer" />
+				</Link>
 				<Like className="cursor-pointer" />
 				<Avatar className="cursor-pointer" />
 			</div>
