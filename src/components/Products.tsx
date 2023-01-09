@@ -111,8 +111,8 @@ function Products({}: Props) {
 				>
 					<img src={productData[currentIndex].img} alt="/" className="h-[95%] w-[100%] object-cover " />
 					<div className="absolute bottom-0 bg-[#111010] text-white text-center p-4 w-[95%] mx-auto place-items-center">
-						<h2 className="text-[1.65rem] leading-[1.65rem]">{productData[currentIndex].title}</h2>
-						<p className="text-[#B4B4B4] text-[14px]">{productData[currentIndex].description}</p>
+						<h2 className="text-[1.65rem] leading-[1.65rem]">{productData[currentIndex].name}</h2>
+						<p className="text-[#B4B4B4] text-[14px]">{productData[currentIndex].shortDescription}</p>
 					</div>
 				</div>
 

@@ -3,25 +3,45 @@ import ProductTwo from '../assets/images/productTwo.png';
 import ProductThree from '../assets/images/productThree.png';
 import ProductFour from '../assets/images/productFour.png';
 
-export const productData = [
+interface Product {
+	img: string;
+	name: string;
+	price: number;
+	shortDescription: string;
+	fullDescription: string;
+}
+
+export const productData: Product[] = [
 	{
 		img: ProductOne,
-		title: 'Bathroom Tiles',
-		description: 'Ante mus blandit sapien sociosqu per consequat ad.',
+		name: 'Bathroom Tiles',
+		price: 199.5,
+		shortDescription: 'Ante mus blandit sapien sociosqu per consequat ad.',
+		fullDescription:
+			'Product Short Description senectus et netus et malesuada fames ac turpis egestas. Vesitbulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend',
 	},
 	{
 		img: ProductTwo,
-		title: 'Marble',
-		description: 'Ante mus blandit sapien sociosqu',
+		name: 'Marble',
+		price: 199.5,
+		shortDescription: 'Ante mus blandit sapien sociosqu',
+		fullDescription:
+			'Product Short Description senectus et netus et malesuada fames ac turpis egestas. Vesitbulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend',
 	},
 	{
 		img: ProductThree,
-		title: 'Outdoor Flooring',
-		description: 'Ante mus blandit sapien sociosqu per consequat ad.',
+		name: 'Outdoor Flooring',
+		price: 199.5,
+		shortDescription: 'Ante mus blandit sapien sociosqu per consequat ad.',
+		fullDescription:
+			'Product Short Description senectus et netus et malesuada fames ac turpis egestas. Vesitbulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend',
 	},
 	{
 		img: ProductFour,
-		title: 'Kitchen Interior',
-		description: 'Ante mus blandit sapien sociosqu per consequat ad.',
+		name: 'Kitchen Interior',
+		price: 199.5,
+		shortDescription: 'Ante mus blandit sapien sociosqu per consequat ad.',
+		fullDescription:
+			'Product Short Description senectus et netus et malesuada fames ac turpis egestas. Vesitbulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend',
 	},
 ];

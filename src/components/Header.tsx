@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useClickOutside } from '@mantine/hooks';
 import { Link, NavLink } from 'react-router-dom';
 import Logo from '../assets/images/logoBlack.png';
 import { ReactComponent as Search } from '../assets/svg/Search.svg';
@@ -11,12 +12,14 @@ type Props = {};
 
 function Header({}: Props) {
 	const [nav, setNav] = useState(false);
+	const ref = useClickOutside(() => setNav(false));
 
 	return (
 		<header className="w-full flex justify-between lg:flex-col lg:gap-4 items-center p-4">
 			<Menu className="lg:hidden cursor-pointer" onClick={() => setNav(!nav)} />
 
 			<div
+				ref={ref}
 				className={
 					nav
 						? ` transform translate-x-[0%] transition-all duration-500 fixed top-0 left-0 bottom-0 bg-white w-[60%] p-4 z-10`
