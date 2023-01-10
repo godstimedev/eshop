@@ -5,12 +5,26 @@ import ProductTwo from '../assets/images/productTwo.png';
 import ProductThree from '../assets/images/productThree.png';
 import ProductFour from '../assets/images/productFour.png';
 import { ReactComponent as Like } from '../assets/svg/Like.svg';
+import { useParams } from 'react-router-dom';
+// import { productData } from '../data/productData';
+import { useAppDispatch, useAppSelector } from '../redux/store/store';
+
+// redux
+import { decrement, increment } from '../redux/features/cartSlice';
 
 type Props = {};
 
 function ProductDetails({}: Props) {
-	const [active, setActive] = useState(1);
+	// cart state
+	const dispatch = useAppDispatch();
+	const { count, products } = useAppSelector((store) => store.cart);
+
 	const [activeImg, setActiveImg] = useState(1);
+	const [active, setActive] = useState(1);
+
+	const { id } = useParams();
+	const product = products.find((item) => item.id === id);
+	// console.log(id);
 
 	return (
 		<main className="px-[2rem] lg:px-[6rem] my-[3rem] flex flex-col gap-[6rem]">
@@ -54,21 +68,21 @@ function ProductDetails({}: Props) {
 				<div className="w-full md:w-[50%] flex flex-col gap-[4rem]">
 					<div>
 						{' '}
-						<h1>Product Name</h1>
-						<h2>199,50 SAR</h2>
-						<p className="mt-6">
-							Product Short Description senectus et netus et malesuada fames ac turpis egestas. Vesitbulum
-							tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet
-							quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend{' '}
-						</p>
+						<h1>{product?.name}</h1>
+						<h2>{product?.price} SAR</h2>
+						<p className="mt-6">{product?.fullDescription} </p>
 					</div>
 
 					<div>
 						<div className="flex gap-4">
 							<div className="flex gap-6 items-center border border-[#000] px-4">
-								<span className="cursor-pointer">-</span>
-								<span>1</span>
-								<span className="cursor-pointer">+</span>
+								<span onClick={() => dispatch(decrement())} className="cursor-pointer">
+									-
+								</span>
+								<span>{count}</span>
+								<span onClick={() => dispatch(increment())} className="cursor-pointer">
+									+
+								</span>
 							</div>
 							<button className="bg-[#22222B] text-white px-6 text-sm md:font-xl">Add to cart</button>
 							<button className="border border-[#000] px-2">

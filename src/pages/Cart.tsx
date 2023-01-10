@@ -2,11 +2,19 @@ import React from 'react';
 import { ReactComponent as ArrowBack } from '../assets/svg/ArrowBack.svg';
 import { ReactComponent as Delete } from '../assets/svg/Delete.svg';
 import ProductImg from '../assets/images/productImg.png';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../redux/store/store';
+import { decrement, increment } from '../redux/features/cartSlice';
 
 type Props = {};
 
 function Cart({}: Props) {
+	const dispatch = useAppDispatch();
+	const { count, products } = useAppSelector((store) => store.cart);
+
+	const { id } = useParams();
+	const product = products.find((item) => item.id === id);
+
 	return (
 		<main className="relative min-h-[100vh] md:px-[3rem] px-[1rem] py-2">
 			<section className="px-[2rem]">
@@ -37,15 +45,25 @@ function Cart({}: Props) {
 						<div className="flex flex-col md:flex-row gap-3 items-center ">
 							<img src={ProductImg} alt="/" className="h-[60px] w-[60px]   object-cover" />
 							<div>
-								<h2>Product Name</h2>
+								<h2>{product?.name}</h2>
 								<p>Lorem Ipsum</p>
 							</div>
 						</div>
 						<div className="text-center text-sm">199.00</div>
 						<div className="text-center flex justify-center gap-4">
-							<span className="border border-black w-[25px] h-[25px] cursor-pointer ">-</span>
-							<span>1</span>
-							<span className="border border-black w-[25px] h-[25px] cursor-pointer">+</span>
+							<span
+								onClick={() => dispatch(decrement())}
+								className="border border-black w-[25px] h-[25px] cursor-pointer "
+							>
+								-
+							</span>
+							<span>{count}</span>
+							<span
+								onClick={() => dispatch(increment())}
+								className="border border-black w-[25px] h-[25px] cursor-pointer"
+							>
+								+
+							</span>
 						</div>
 						<div className="text-center flex items-center justify-center justify-items-stretch">
 							<span className="flex-grow text-sm">199.00</span>{' '}
