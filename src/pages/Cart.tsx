@@ -10,10 +10,10 @@ type Props = {};
 
 function Cart({}: Props) {
 	const dispatch = useAppDispatch();
-	const { count, products } = useAppSelector((store) => store.cart);
+	const { count, cartItems } = useAppSelector((store) => store.cart);
 
 	const { id } = useParams();
-	const product = products.find((item) => item.id === id);
+	const product = cartItems.find((item) => item.id === id);
 
 	return (
 		<main className="relative min-h-[100vh] md:px-[3rem] px-[1rem] py-2">
@@ -59,7 +59,7 @@ function Cart({}: Props) {
 							</span>
 							<span>{count}</span>
 							<span
-								onClick={() => dispatch(increment())}
+								onClick={() => dispatch(increment({ id }))}
 								className="border border-black w-[25px] h-[25px] cursor-pointer"
 							>
 								+

@@ -7,12 +7,15 @@ import { ReactComponent as Cart } from '../assets/svg/Cart.svg';
 import { ReactComponent as Like } from '../assets/svg/Like.svg';
 import { ReactComponent as Avatar } from '../assets/svg/Avatar.svg';
 import { ReactComponent as Menu } from '../assets/svg/Menu.svg';
+import { useAppSelector } from '../redux/store/store';
 
 type Props = {};
 
 function Header({}: Props) {
 	const [nav, setNav] = useState(false);
 	const ref = useClickOutside(() => setNav(false));
+
+	const { count } = useAppSelector((store) => store.cart);
 
 	return (
 		<header className="w-full flex justify-between lg:flex-col lg:gap-4 items-center p-4">
@@ -61,7 +64,12 @@ function Header({}: Props) {
 				</ul>
 				<div className="flex space-x-5">
 					<Link to="/cart">
-						<Cart className="cursor-pointer" />
+						<div className="relative">
+							<Cart className="cursor-pointer" />
+							<span className="absolute top-[-.8rem] right-[-.5rem] bg-black rounded-full text-white p-1 leading-3 text-xs">
+								{count}
+							</span>
+						</div>
 					</Link>
 					<Like className="cursor-pointer" />
 					<Avatar className="cursor-pointer" />
@@ -69,7 +77,10 @@ function Header({}: Props) {
 			</nav>
 			<div className=" lg:hidden flex space-x-5 ">
 				<Link to="/cart">
-					<Cart className="cursor-pointer" />
+					<div className="relative">
+						<Cart className="cursor-pointer" />
+						<span className="absolute top-0 right-0">3</span>
+					</div>
 				</Link>
 				<Like className="cursor-pointer" />
 				<Avatar className="cursor-pointer" />

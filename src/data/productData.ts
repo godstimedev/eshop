@@ -10,6 +10,7 @@ interface Product {
 	price: number;
 	shortDescription: string;
 	fullDescription: string;
+	amount: number;
 }
 
 export const productData: Product[] = [
@@ -21,6 +22,7 @@ export const productData: Product[] = [
 		shortDescription: 'Ante mus blandit sapien sociosqu per consequat ad.',
 		fullDescription:
 			'Product Short Description senectus et netus et malesuada fames ac turpis egestas. Vesitbulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend',
+		amount: 1,
 	},
 	{
 		id: '2',
@@ -30,6 +32,7 @@ export const productData: Product[] = [
 		shortDescription: 'Ante mus blandit sapien sociosqu',
 		fullDescription:
 			'Product Short Description senectus et netus et malesuada fames ac turpis egestas. Vesitbulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend',
+		amount: 1,
 	},
 	{
 		id: '3',
@@ -39,6 +42,7 @@ export const productData: Product[] = [
 		shortDescription: 'Ante mus blandit sapien sociosqu per consequat ad.',
 		fullDescription:
 			'Product Short Description senectus et netus et malesuada fames ac turpis egestas. Vesitbulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend',
+		amount: 1,
 	},
 	{
 		id: '4',
@@ -48,5 +52,6 @@ export const productData: Product[] = [
 		shortDescription: 'Ante mus blandit sapien sociosqu per consequat ad.',
 		fullDescription:
 			'Product Short Description senectus et netus et malesuada fames ac turpis egestas. Vesitbulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend',
+		amount: 1,
 	},
 ];

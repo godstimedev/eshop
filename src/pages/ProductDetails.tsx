@@ -17,13 +17,13 @@ type Props = {};
 function ProductDetails({}: Props) {
 	// cart state
 	const dispatch = useAppDispatch();
-	const { count, products } = useAppSelector((store) => store.cart);
+	const { count, cartItems } = useAppSelector((store) => store.cart);
 
 	const [activeImg, setActiveImg] = useState(1);
 	const [active, setActive] = useState(1);
 
 	const { id } = useParams();
-	const product = products.find((item) => item.id === id);
+	const product = cartItems.find((item) => item.id === id);
 	// console.log(id);
 
 	return (
@@ -80,7 +80,7 @@ function ProductDetails({}: Props) {
 									-
 								</span>
 								<span>{count}</span>
-								<span onClick={() => dispatch(increment())} className="cursor-pointer">
+								<span onClick={() => dispatch(increment({ id }))} className="cursor-pointer">
 									+
 								</span>
 							</div>
