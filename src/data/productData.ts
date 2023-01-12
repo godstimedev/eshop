@@ -4,7 +4,7 @@ import ProductThree from '../assets/images/productThree.png';
 import ProductFour from '../assets/images/productFour.png';
 
 interface Product {
-	id: string;
+	id: number;
 	img: string;
 	name: string;
 	price: number;
@@ -15,7 +15,7 @@ interface Product {
 
 export const productData: Product[] = [
 	{
-		id: '1',
+		id: 1,
 		img: ProductOne,
 		name: 'Bathroom Tiles',
 		price: 199.5,
@@ -25,7 +25,7 @@ export const productData: Product[] = [
 		amount: 1,
 	},
 	{
-		id: '2',
+		id: 2,
 		img: ProductTwo,
 		name: 'Marble',
 		price: 199.5,
@@ -35,7 +35,7 @@ export const productData: Product[] = [
 		amount: 1,
 	},
 	{
-		id: '3',
+		id: 3,
 		img: ProductThree,
 		name: 'Outdoor Flooring',
 		price: 199.5,
@@ -45,7 +45,7 @@ export const productData: Product[] = [
 		amount: 1,
 	},
 	{
-		id: '4',
+		id: 4,
 		img: ProductFour,
 		name: 'Kitchen Interior',
 		price: 199.5,

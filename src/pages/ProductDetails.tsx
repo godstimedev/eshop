@@ -6,25 +6,27 @@ import ProductThree from '../assets/images/productThree.png';
 import ProductFour from '../assets/images/productFour.png';
 import { ReactComponent as Like } from '../assets/svg/Like.svg';
 import { useParams } from 'react-router-dom';
-// import { productData } from '../data/productData';
+import { productData } from '../data/productData';
 import { useAppDispatch, useAppSelector } from '../redux/store/store';
 
 // redux
-import { decrement, increment } from '../redux/features/cartSlice';
+import { decrement, increment, addCart } from '../redux/features/cartSlice';
 
 type Props = {};
 
 function ProductDetails({}: Props) {
 	// cart state
 	const dispatch = useAppDispatch();
-	const { count, cartItems } = useAppSelector((store) => store.cart);
+	const { count, cartItems, addToCart } = useAppSelector((store) => store.cart);
 
 	const [activeImg, setActiveImg] = useState(1);
 	const [active, setActive] = useState(1);
 
 	const { id } = useParams();
-	const product = cartItems.find((item) => item.id === id);
-	// console.log(id);
+	const product = cartItems.find((item) => item.name === id);
+	// console.log(product?.id);
+
+	console.log(addToCart);
 
 	return (
 		<main className="px-[2rem] lg:px-[6rem] my-[3rem] flex flex-col gap-[6rem]">
@@ -76,15 +78,20 @@ function ProductDetails({}: Props) {
 					<div>
 						<div className="flex gap-4">
 							<div className="flex gap-6 items-center border border-[#000] px-4">
-								<span onClick={() => dispatch(decrement())} className="cursor-pointer">
+								<span onClick={() => dispatch(decrement(product))} className="cursor-pointer">
 									-
 								</span>
-								<span>{count}</span>
-								<span onClick={() => dispatch(increment({ id }))} className="cursor-pointer">
+								<span>{product?.amount}</span>
+								<span onClick={() => dispatch(increment(product))} className="cursor-pointer">
 									+
 								</span>
 							</div>
-							<button className="bg-[#22222B] text-white px-6 text-sm md:font-xl">Add to cart</button>
+							<button
+								onClick={() => dispatch(addCart())}
+								className="bg-[#22222B] text-white px-6 text-sm md:font-xl"
+							>
+								Add to cart
+							</button>
 							<button className="border border-[#000] px-2">
 								<Like />
 							</button>

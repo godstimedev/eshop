@@ -15,7 +15,7 @@ function Header({}: Props) {
 	const [nav, setNav] = useState(false);
 	const ref = useClickOutside(() => setNav(false));
 
-	const { count } = useAppSelector((store) => store.cart);
+	const { count, addToCart } = useAppSelector((store) => store.cart);
 
 	return (
 		<header className="w-full flex justify-between lg:flex-col lg:gap-4 items-center p-4">
@@ -66,9 +66,11 @@ function Header({}: Props) {
 					<Link to="/cart">
 						<div className="relative">
 							<Cart className="cursor-pointer" />
-							<span className="absolute top-[-.8rem] right-[-.5rem] bg-black rounded-full text-white p-1 leading-3 text-xs">
-								{count}
-							</span>
+							{addToCart && (
+								<span className="absolute top-[-.8rem] right-[-.5rem] bg-black rounded-full text-white p-1 leading-3 text-xs">
+									{count}
+								</span>
+							)}
 						</div>
 					</Link>
 					<Like className="cursor-pointer" />

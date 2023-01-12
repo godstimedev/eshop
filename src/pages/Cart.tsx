@@ -13,7 +13,7 @@ function Cart({}: Props) {
 	const { count, cartItems } = useAppSelector((store) => store.cart);
 
 	const { id } = useParams();
-	const product = cartItems.find((item) => item.id === id);
+	const product = cartItems.find((item) => item.name === id);
 
 	return (
 		<main className="relative min-h-[100vh] md:px-[3rem] px-[1rem] py-2">
@@ -52,14 +52,14 @@ function Cart({}: Props) {
 						<div className="text-center text-sm">199.00</div>
 						<div className="text-center flex justify-center gap-4">
 							<span
-								onClick={() => dispatch(decrement())}
+								onClick={() => dispatch(decrement(product))}
 								className="border border-black w-[25px] h-[25px] cursor-pointer "
 							>
 								-
 							</span>
 							<span>{count}</span>
 							<span
-								onClick={() => dispatch(increment({ id }))}
+								onClick={() => dispatch(increment(product))}
 								className="border border-black w-[25px] h-[25px] cursor-pointer"
 							>
 								+
