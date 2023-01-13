@@ -10,23 +10,39 @@ import { productData } from '../data/productData';
 import { useAppDispatch, useAppSelector } from '../redux/store/store';
 
 // redux
-import { decrement, increment, addCart } from '../redux/features/cartSlice';
+import { addItems, decrement, increment, removeItem } from '../redux/features/cartSlice';
 
 type Props = {};
 
 function ProductDetails({}: Props) {
-	// cart state
+	// cart
 	const dispatch = useAppDispatch();
-	const { count, cartItems, addToCart } = useAppSelector((store) => store.cart);
+	const { cartItems, quantity } = useAppSelector((store) => store.cart);
 
+	//params
+	const { id } = useParams();
+	const product: any = productData.find((item) => item.name === id);
+	// const pro = product[0];
+	console.log(product);
+
+	// console.log(addToCart);
+
+	const [btnText, setBtnText] = useState('Add to cart');
+
+	const handleButton = (product: any) => {
+		if (btnText === 'Add to cart') {
+			dispatch(addItems(product));
+			setBtnText('Remove from cart');
+			console.log(cartItems);
+		} else {
+			dispatch(removeItem(product));
+			setBtnText('Add to cart');
+		}
+	};
+
+	// slider
 	const [activeImg, setActiveImg] = useState(1);
 	const [active, setActive] = useState(1);
-
-	const { id } = useParams();
-	const product = cartItems.find((item) => item.name === id);
-	// console.log(product?.id);
-
-	console.log(addToCart);
 
 	return (
 		<main className="px-[2rem] lg:px-[6rem] my-[3rem] flex flex-col gap-[6rem]">
@@ -81,16 +97,16 @@ function ProductDetails({}: Props) {
 								<span onClick={() => dispatch(decrement(product))} className="cursor-pointer">
 									-
 								</span>
-								<span>{product?.amount}</span>
+								<span>{quantity}</span>
 								<span onClick={() => dispatch(increment(product))} className="cursor-pointer">
 									+
 								</span>
 							</div>
 							<button
-								onClick={() => dispatch(addCart())}
+								onClick={() => handleButton(product)}
 								className="bg-[#22222B] text-white px-6 text-sm md:font-xl"
 							>
-								Add to cart
+								{btnText}
 							</button>
 							<button className="border border-[#000] px-2">
 								<Like />
