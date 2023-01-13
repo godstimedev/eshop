@@ -56,7 +56,9 @@ function Footer({}: Props) {
 				</div>
 			</div>
 			<div className="md:pt-[3rem] px-[4rem] flex justify-center md:justify-start ">
-				<p className="text-white font-light text-xs">Copyright © 2022 | All Rights Reserved.</p>
+				<p className="text-white font-light text-xs text-center md:text-start">
+					Copyright © 2022 | All Rights Reserved.
+				</p>
 			</div>
 		</footer>
 	);

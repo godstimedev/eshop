@@ -36,7 +36,7 @@ function Products({}: Props) {
 	// console.log(scroll);
 
 	return (
-		<section className="min-h-screen py-[4rem] px-[4rem] ">
+		<section className="min-h-screen py-[4rem] md:px-[4rem] px-4">
 			<div className="flex flex-col gap-4 items-center">
 				<h1 className=" ">Products</h1>
 				<div className="w-[110px] border-b-4 border-[#C4C4C4]" />
