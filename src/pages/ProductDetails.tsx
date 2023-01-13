@@ -3,37 +3,44 @@ import ProductImg from '../assets/images/productImg.png';
 import ProductOne from '../assets/images/productOne.png';
 import ProductTwo from '../assets/images/productTwo.png';
 import ProductThree from '../assets/images/productThree.png';
-import ProductFour from '../assets/images/productFour.png';
+// import ProductFour from '../assets/images/productFour.png';
 import { ReactComponent as Like } from '../assets/svg/Like.svg';
 import { useParams } from 'react-router-dom';
 import { productData } from '../data/productData';
 import { useAppDispatch, useAppSelector } from '../redux/store/store';
 
+// toastify
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 // redux
-import { addItems, decrement, increment, removeItem } from '../redux/features/cartSlice';
+import { addItems, removeItem } from '../redux/features/cartSlice';
 
 type Props = {};
 
 function ProductDetails({}: Props) {
 	// cart
 	const dispatch = useAppDispatch();
-	const { cartItems, quantity } = useAppSelector((store) => store.cart);
+	const { cartItems } = useAppSelector((store) => store.cart);
 
 	//params
 	const { id } = useParams();
 	const product: any = productData.find((item) => item.name === id);
-	// const pro = product[0];
-	console.log(product);
-
-	// console.log(addToCart);
 
 	const [btnText, setBtnText] = useState('Add to cart');
 
+	// toastify function
+	const notify = () => toast('Item already in cart', { theme: 'dark', hideProgressBar: true });
+
 	const handleButton = (product: any) => {
 		if (btnText === 'Add to cart') {
-			dispatch(addItems(product));
+			if (cartItems.find((item) => item.name === product.name)) {
+				notify();
+				return null;
+			} else {
+				dispatch(addItems(product));
+			}
 			setBtnText('Remove from cart');
-			console.log(cartItems);
 		} else {
 			dispatch(removeItem(product));
 			setBtnText('Add to cart');
@@ -93,7 +100,7 @@ function ProductDetails({}: Props) {
 
 					<div>
 						<div className="flex gap-4">
-							<div className="flex gap-6 items-center border border-[#000] px-4">
+							{/* <div className="flex gap-6 items-center border border-[#000] px-4">
 								<span onClick={() => dispatch(decrement(product))} className="cursor-pointer">
 									-
 								</span>
@@ -101,7 +108,7 @@ function ProductDetails({}: Props) {
 								<span onClick={() => dispatch(increment(product))} className="cursor-pointer">
 									+
 								</span>
-							</div>
+							</div> */}
 							<button
 								onClick={() => handleButton(product)}
 								className="bg-[#22222B] text-white px-6 text-sm md:font-xl"
@@ -117,11 +124,12 @@ function ProductDetails({}: Props) {
 							<li>Lorem ipsum dolor sit amet,</li>
 							<li>Lorem ipsum dolor sit amet,</li>
 						</ul>
+						<ToastContainer />
 					</div>
 				</div>
 			</section>
 
-			<section className="">
+			<section>
 				<div className="flex gap-4 justify-center items-center">
 					<h4
 						onClick={() => setActive(1)}
@@ -163,8 +171,18 @@ function ProductDetails({}: Props) {
 							vestibulum ante ac faucibus tristique. Integer quis efficitur dolor, at dignissim dolor.
 						</p>
 					)}
-					{active === 2 && <p>Lorem ipsum dolor sit amet,</p>}
-					{active === 3 && <p>Lorem ipsum at dignissim dolor 333.</p>}
+					{active === 2 && (
+						<p>
+							Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet consectetur adipisicing elit.
+							Repudiandae autem qui obcaecati rerum hic quis?
+						</p>
+					)}
+					{active === 3 && (
+						<p>
+							Lorem ipsum at dignissim dolor 333. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+							In est suscipit iste ratione quod perferendis ab cumque illo, similique sapiente.
+						</p>
+					)}
 				</div>
 			</section>
 		</main>

@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
-// import ProductOne from '../assets/images/productOne.png';
-// import ProductTwo from '../assets/images/productTwo.png';
-// import ProductThree from '../assets/images/productThree.png';
-// import ProductFour from '../assets/images/productFour.png';
 
 // svg
 import { ReactComponent as ArrowLeft } from '../assets/svg/ArrowLeft.svg';
 import { ReactComponent as ArrowRight } from '../assets/svg/ArrowRight.svg';
 
 import { productData } from '../data/productData';
-import { Link, useHref } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 type Props = {};
 

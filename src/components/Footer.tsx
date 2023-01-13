@@ -1,4 +1,3 @@
-import React from 'react';
 import Logo from '../assets/images/logo.png';
 
 // svgs
@@ -10,11 +9,11 @@ type Props = {};
 
 function Footer({}: Props) {
 	return (
-		<footer className="bg-[#111010] h-[40vh] w-full py-[4rem] px-[4rem] relative bottom-0">
+		<footer className="bg-[#111010] min-h-[40vh] w-full py-[4rem] px-[4rem] mt-auto">
 			<div className="grid grid-cols-1 md:grid-cols-4 md:items-start place-items-center text-white">
-				<div className="flex flex-col justify-between h-[100%]">
+				<div className="flex flex-col justify-between h-[100%] gap-4 md:gap-0">
 					<img src={Logo} alt="/" className="cursor-pointer" />
-					<div className="flex gap-4">
+					<div className="flex gap-4 justify-center md:justify-start pb-4 md:pb-0">
 						<Facebook className="cursor-pointer" />
 						<Twitter className="cursor-pointer" />
 						<Instagram className="cursor-pointer" />
@@ -56,7 +55,7 @@ function Footer({}: Props) {
 					</div>
 				</div>
 			</div>
-			<div className="mt-[3rem] px-[4rem]">
+			<div className="md:pt-[3rem] px-[4rem] flex justify-center md:justify-start ">
 				<p className="text-white font-light text-xs">Copyright © 2022 | All Rights Reserved.</p>
 			</div>
 		</footer>

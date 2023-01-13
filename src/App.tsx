@@ -1,4 +1,3 @@
-import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Footer from './components/Footer';
 import Header from './components/Header';
@@ -8,7 +7,7 @@ import ProductDetails from './pages/ProductDetails';
 
 function App() {
 	return (
-		<div>
+		<div className="min-h-[100vh] flex flex-col justify-between">
 			<Header />
 			<Routes>
 				<Route path="/" element={<Home />} />

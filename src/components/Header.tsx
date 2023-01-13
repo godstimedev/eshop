@@ -36,12 +36,12 @@ function Header({}: Props) {
 						<li className="navItems">
 							<NavLink to="/">Home</NavLink>
 						</li>
-						<li className="navItems cursor-pointer">Spaces</li>
-						<li className="navItems cursor-pointer">Products & Services</li>
-						<li className="navItems cursor-pointer">Showrooms</li>
-						<li className="navItems cursor-pointer">Company</li>
-						<li className="navItems cursor-pointer">Media</li>
-						<li className="navItems cursor-pointer">Contact</li>
+						<li className="navItems ">Spaces</li>
+						<li className="navItems ">Products & Services</li>
+						<li className="navItems ">Showrooms</li>
+						<li className="navItems ">Company</li>
+						<li className="navItems ">Media</li>
+						<li className="navItems ">Contact</li>
 					</ul>
 				</div>
 			</div>
@@ -56,20 +56,22 @@ function Header({}: Props) {
 					<li className="navItems">
 						<NavLink to="/">Home</NavLink>
 					</li>
-					<li className="navItems cursor-pointer">Spaces</li>
-					<li className="navItems cursor-pointer">Products & Services</li>
-					<li className="navItems cursor-pointer">Showrooms</li>
-					<li className="navItems cursor-pointer">Company</li>
-					<li className="navItems cursor-pointer">Media</li>
-					<li className="navItems cursor-pointer">Contact</li>
+					<li className="navItems ">Spaces</li>
+					<li className="navItems ">Products & Services</li>
+					<li className="navItems ">Showrooms</li>
+					<li className="navItems ">Company</li>
+					<li className="navItems ">Media</li>
+					<li className="navItems ">Contact</li>
 				</ul>
 				<div className="flex space-x-5">
 					<Link to="/cart">
 						<div className="relative">
 							<Cart className="cursor-pointer" />
-							<span className="absolute top-[-.8rem] right-[-.5rem] bg-black rounded-full text-white p-1 leading-3 text-xs">
-								{cartItems.length}
-							</span>
+							{cartItems.length > 0 && (
+								<span className="absolute top-[-.8rem] right-[-.5rem] bg-black rounded-full text-white p-1 leading-3 text-xs">
+									{cartItems.length}
+								</span>
+							)}
 						</div>
 					</Link>
 					<Like className="cursor-pointer" />
@@ -80,9 +82,11 @@ function Header({}: Props) {
 				<Link to="/cart">
 					<div className="relative">
 						<Cart className="cursor-pointer" />
-						<span className="absolute top-[-.8rem] right-[-.5rem] bg-black rounded-full text-white p-1 leading-3 text-xs">
-							{cartItems.length}
-						</span>
+						{cartItems.length > 0 && (
+							<span className="absolute top-[-.8rem] right-[-.5rem] bg-black rounded-full text-white p-1 leading-3 text-xs">
+								{cartItems.length}
+							</span>
+						)}
 					</div>
 				</Link>
 				<Like className="cursor-pointer" />

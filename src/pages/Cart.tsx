@@ -1,33 +1,25 @@
 import React from 'react';
 import { ReactComponent as ArrowBack } from '../assets/svg/ArrowBack.svg';
 import { ReactComponent as Delete } from '../assets/svg/Delete.svg';
-import ProductImg from '../assets/images/productImg.png';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../redux/store/store';
-// import { decrement, increment } from '../redux/features/cartSlice';
-import { productData } from '../data/productData';
-import { calculateTotals, decrement, increment, removeItem } from '../redux/features/cartSlice';
+import { decrement, increment, removeItem } from '../redux/features/cartSlice';
 
 type Props = {};
 
 function Cart({}: Props) {
 	const dispatch = useAppDispatch();
-	const { count, cartItems, itemTotal, subTotal } = useAppSelector((store) => store.cart);
-
-	// const { id } = useParams();
-	const product = productData.find((item) => item.id === item.id);
+	const { cartItems } = useAppSelector((store) => store.cart);
 
 	let shipping: number = 5.91;
 	let total = 0;
 	let sub = 0;
 	const subtotal: any = (item: any) => {
 		sub += item.price * item.amount;
-
 		return sub;
 	};
 	cartItems.forEach(subtotal);
 	total += sub + shipping;
-	console.log(sub);
 
 	return (
 		<main className="relative min-h-[100vh] md:px-[3rem] px-[1rem] py-2">
@@ -136,7 +128,7 @@ function Cart({}: Props) {
 				{/* empty cart  */}
 				{cartItems.length === 0 && (
 					<div className="flex items-center justify-center w-full">
-						<h1 className="text-xl font-extrabold">Your Cart is empty</h1>
+						<h1 className="text-xl font-bold">Your Cart is empty</h1>
 					</div>
 				)}
 			</section>
