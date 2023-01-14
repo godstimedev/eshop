@@ -1,5 +1,6 @@
 import React from 'react';
 import Tile1 from '../assets/images/tile1.png';
+import { collectionData } from '../data/collectionData';
 
 type Props = {};
 
@@ -16,86 +17,18 @@ function Collections({}: Props) {
 			</div>
 
 			<div className="grid grid-cols-4 gap-4 py-4">
-				<div className="flex flex-col gap-4 pb-4 shadow-md">
-					<img src={Tile1} alt="/" />
-					<div className="text-center space-y-2">
-						<h2 className="text-[1.65rem] leading-[1.65rem]">Zurich Vision 60×60</h2>
-						<p className="text-[rgba(17, 16, 16, 0.5)] text-[14px]">
-							{' '}
-							<span className="line-through text-[#CACACA]">449.99$</span> 237.99$
-						</p>
+				{collectionData.map((item) => (
+					<div className="flex flex-col gap-4 pb-4 shadow-md">
+						<img src={item.img} alt="/" />
+						<div className="text-center space-y-2">
+							<h2 className="text-[1.65rem] leading-[1.65rem]">{item.title}</h2>
+							<p className="text-[rgba(17, 16, 16, 0.5)] text-[14px]">
+								{' '}
+								<span className="line-through text-[#CACACA]">449.99 SAR</span> {item.price} SAR
+							</p>
+						</div>
 					</div>
-				</div>
-				<div className="flex flex-col gap-4 pb-4 shadow-md">
-					<img src={Tile1} alt="/" />
-					<div className="text-center space-y-2">
-						<h2 className="text-[1.65rem] leading-[1.65rem]">Zurich Vision 60×60</h2>
-						<p className="text-[rgba(17, 16, 16, 0.5)] text-[14px]">
-							{' '}
-							<span className="line-through text-[#CACACA]">449.99$</span> 237.99$
-						</p>
-					</div>
-				</div>
-				<div className="flex flex-col gap-4 pb-4 shadow-md">
-					<img src={Tile1} alt="/" />
-					<div className="text-center space-y-2">
-						<h2 className="text-[1.65rem] leading-[1.65rem]">Zurich Vision 60×60</h2>
-						<p className="text-[rgba(17, 16, 16, 0.5)] text-[14px]">
-							{' '}
-							<span className="line-through text-[#CACACA]">449.99$</span> 237.99$
-						</p>
-					</div>
-				</div>
-				<div className="flex flex-col gap-4 pb-4 shadow-md">
-					<img src={Tile1} alt="/" />
-					<div className="text-center space-y-2">
-						<h2 className="text-[1.65rem] leading-[1.65rem]">Zurich Vision 60×60</h2>
-						<p className="text-[rgba(17, 16, 16, 0.5)] text-[14px]">
-							{' '}
-							<span className="line-through text-[#CACACA]">449.99$</span> 237.99$
-						</p>
-					</div>
-				</div>
-				<div className="flex flex-col gap-4 pb-4 shadow-md">
-					<img src={Tile1} alt="/" />
-					<div className="text-center space-y-2">
-						<h2 className="text-[1.65rem] leading-[1.65rem]">Zurich Vision 60×60</h2>
-						<p className="text-[rgba(17, 16, 16, 0.5)] text-[14px]">
-							{' '}
-							<span className="line-through text-[#CACACA]">449.99$</span> 237.99$
-						</p>
-					</div>
-				</div>
-				<div className="flex flex-col gap-4 pb-4 shadow-md">
-					<img src={Tile1} alt="/" />
-					<div className="text-center space-y-2">
-						<h2 className="text-[1.65rem] leading-[1.65rem]">Zurich Vision 60×60</h2>
-						<p className="text-[rgba(17, 16, 16, 0.5)] text-[14px]">
-							{' '}
-							<span className="line-through text-[#CACACA]">449.99$</span> 237.99$
-						</p>
-					</div>
-				</div>
-				<div className="flex flex-col gap-4 pb-4 shadow-md">
-					<img src={Tile1} alt="/" />
-					<div className="text-center space-y-2">
-						<h2 className="text-[1.65rem] leading-[1.65rem]">Zurich Vision 60×60</h2>
-						<p className="text-[rgba(17, 16, 16, 0.5)] text-[14px]">
-							{' '}
-							<span className="line-through text-[#CACACA]">449.99$</span> 237.99$
-						</p>
-					</div>
-				</div>
-				<div className="flex flex-col gap-4 pb-4 shadow-md">
-					<img src={Tile1} alt="/" />
-					<div className="text-center space-y-2">
-						<h2 className="text-[1.65rem] leading-[1.65rem]">Zurich Vision 60×60</h2>
-						<p className="text-[rgba(17, 16, 16, 0.5)] text-[14px]">
-							{' '}
-							<span className="line-through text-[#CACACA]">449.99$</span> 237.99$
-						</p>
-					</div>
-				</div>
+				))}
 			</div>
 
 			<div className="w-full flex mt-8">

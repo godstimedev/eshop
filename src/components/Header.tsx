@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useClickOutside } from '@mantine/hooks';
 import { Link, NavLink } from 'react-router-dom';
-import Logo from '../assets/images/logoBlack.png';
+import Logo from '../assets/images/newLogo.png';
 import { ReactComponent as Search } from '../assets/svg/Search.svg';
 import { ReactComponent as Cart } from '../assets/svg/Cart.svg';
 import { ReactComponent as Like } from '../assets/svg/Like.svg';
@@ -47,7 +47,7 @@ function Header({}: Props) {
 			</div>
 
 			<div>
-				<img src={Logo} alt="Logo" className="cursor-pointer" />
+				<img src={Logo} alt="Logo" className=" w-[55px] h-[55px]" />
 			</div>
 
 			<nav className="hidden lg:flex items-center space-x-10">

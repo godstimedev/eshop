@@ -1,4 +1,4 @@
-import Logo from '../assets/images/logo.png';
+import Logo from '../assets/images/newLogo.png';
 
 // svgs
 import { ReactComponent as Facebook } from '../assets/svg/Facebook.svg';
@@ -12,7 +12,7 @@ function Footer({}: Props) {
 		<footer className="bg-[#111010] min-h-[40vh] w-full py-[4rem] px-[4rem] mt-auto">
 			<div className="grid grid-cols-1 md:grid-cols-4 md:items-start place-items-center text-white">
 				<div className="flex flex-col justify-between h-[100%] gap-4 md:gap-0">
-					<img src={Logo} alt="/" className="cursor-pointer" />
+					<img src={Logo} alt="/" className="cursor-pointer w-[55px] h-[55px] mx-auto" />
 					<div className="flex gap-4 justify-center md:justify-start pb-4 md:pb-0">
 						<Facebook className="cursor-pointer" />
 						<Twitter className="cursor-pointer" />
