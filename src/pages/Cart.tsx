@@ -25,7 +25,7 @@ function Cart({}: Props) {
 		<main className="relative min-h-[100vh] md:px-[3rem] px-[1rem] py-2">
 			<section className="px-[2rem]">
 				<h1>Shopping Cart</h1>
-				<Link to="/">
+				<Link to="/products">
 					<div className="flex gap-2 items-center cursor-pointer">
 						<ArrowBack />
 						<p>Continue Shopping</p>

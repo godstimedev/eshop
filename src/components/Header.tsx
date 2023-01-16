@@ -37,11 +37,17 @@ function Header({}: Props) {
 							<NavLink to="/">Home</NavLink>
 						</li>
 						<li className="navItems ">Spaces</li>
-						<li className="navItems ">Products & Services</li>
+						<li className="navItems ">
+							<NavLink to="products">Products & Services</NavLink>
+						</li>
 						<li className="navItems ">Showrooms</li>
 						<li className="navItems ">Company</li>
 						<li className="navItems ">Media</li>
 						<li className="navItems ">Contact</li>
+						<div className="flex gap-3">
+							<Like className="cursor-pointer" />
+							<Avatar className="cursor-pointer" />
+						</div>
 					</ul>
 				</div>
 			</div>
@@ -57,7 +63,9 @@ function Header({}: Props) {
 						<NavLink to="/">Home</NavLink>
 					</li>
 					<li className="navItems ">Spaces</li>
-					<li className="navItems ">Products & Services</li>
+					<li className="navItems ">
+						<NavLink to="products">Products & Services</NavLink>
+					</li>
 					<li className="navItems ">Showrooms</li>
 					<li className="navItems ">Company</li>
 					<li className="navItems ">Media</li>
@@ -89,8 +97,6 @@ function Header({}: Props) {
 						)}
 					</div>
 				</Link>
-				<Like className="cursor-pointer" />
-				<Avatar className="cursor-pointer" />
 			</div>
 		</header>
 	);
