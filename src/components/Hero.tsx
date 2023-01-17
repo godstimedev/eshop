@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import BannerImg from '../assets/images/heroBanner.png';
 
 type Props = {};
@@ -12,7 +13,10 @@ function Hero({}: Props) {
 					backgroundImage: `url(${BannerImg})`,
 				}}
 			>
-				<div className="hero--card w-[388px] md:w-[520px] min-h-[260px] absolute top-[50%] md:right-20 md:top-12 flex flex-col justify-between gap-2  text-white p-4">
+				<div
+					data-aos="fade-left"
+					className="hero--card w-[388px] md:w-[520px] min-h-[260px] absolute top-[50%] md:right-20 md:top-12 flex flex-col justify-between gap-2  text-white p-4"
+				>
 					<h1 className=" text-center">New Generation Ceramic Tile </h1>
 					<p className="text-white">
 						Penatibus sem vitae mollis luctus mi tellus. Maximus eu eleifend aptent dapibus metus maecenas

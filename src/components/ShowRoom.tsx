@@ -5,7 +5,10 @@ type Props = {};
 
 function ShowRoom({}: Props) {
 	return (
-		<section className="mt-[2rem] mb-[4rem] md:px-[4rem] relative pt-[40%] md:pt-[0%]">
+		<section
+			// data-aos="zoom-in"
+			className="mt-[2rem] mb-[4rem] md:px-[4rem] relative pt-[40%] md:pt-[0%]"
+		>
 			<div
 				style={{
 					backgroundImage: `url(${ShowRoomBg})`,

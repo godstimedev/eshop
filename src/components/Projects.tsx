@@ -40,7 +40,7 @@ function Projects({}: Props) {
 
 			<div className="hidden md:flex gap-6 py-4">
 				{projectData.map((item, index) => (
-					<div key={index} className="flex flex-col gap-4">
+					<div data-aos="flip-right" key={index} className="flex flex-col gap-4">
 						<img src={item.img} alt="/" />
 						<div className="text-center">
 							<h2 className="text-[1.65rem] leading-[1.65rem]">{item.title}</h2>

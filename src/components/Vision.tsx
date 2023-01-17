@@ -7,6 +7,7 @@ function Vision({}: Props) {
 	return (
 		<section className="md:px-[4rem] relative pt-[40%] md:pt-[0%]">
 			<div
+				// data-aos="fade-in"
 				style={{
 					backgroundImage: `url(${VisionBg})`,
 				}}

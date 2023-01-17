@@ -47,7 +47,10 @@ function Products({}: Props) {
 			</div>
 			{/* for large screens */}
 			<div className="hidden md:grid grid-cols-3  gap-4 mt-4">
-				<div className="relative row-span-2 h-[75vh] w-[100%] flex flex-col items-center">
+				<div
+					data-aos="fade-right"
+					className="relative row-span-2 h-[75vh] w-[100%] flex flex-col items-center"
+				>
 					<img src={productData[0].img} alt="/" className="h-[95%] w-[100%]" />
 					<div className="absolute bottom-0 bg-[#111010] text-white text-center p-4 max-w-[95%] mx-auto place-items-center">
 						<Link to={`/product/${productData[0].name}`}>
@@ -57,7 +60,7 @@ function Products({}: Props) {
 					</div>
 				</div>
 
-				<div className="relative row-span-2 h-[75vh]  flex flex-col items-center">
+				<div data-aos="flip-left" className="relative row-span-2 h-[75vh]  flex flex-col items-center">
 					<img src={productData[1].img} alt="/" className="h-[95%] w-[100%]" />
 					<div className="absolute bottom-0 bg-[#111010] text-white text-center p-4 max-w-[95%] mx-auto place-items-center">
 						<Link to={`/product/${productData[1].name}`}>
@@ -67,7 +70,7 @@ function Products({}: Props) {
 					</div>
 				</div>
 
-				<div className="relative row-span-1  flex flex-col items-center">
+				<div data-aos="fade-down" className="relative row-span-1  flex flex-col items-center">
 					<img src={productData[2].img} alt="/" className="h-[85%] w-[100%]" />
 					<div className="absolute bottom-0 bg-[#111010] text-white text-center p-4 max-w-[95%] mx-auto place-items-center">
 						<Link to={`/product/${productData[2].name}`}>
@@ -77,7 +80,7 @@ function Products({}: Props) {
 					</div>
 				</div>
 
-				<div className="relative row-span-1  flex flex-col items-center">
+				<div data-aos="fade-up" className="relative row-span-1  flex flex-col items-center">
 					<img src={productData[3].img} alt="/" className="h-[89%] w-[100%]" />
 					<div className="absolute bottom-0 bg-[#111010] text-white text-center p-4 max-w-[95%] mx-auto place-items-center">
 						<Link to={`/product/${productData[3].name}`}>

@@ -18,7 +18,7 @@ function Collections({}: Props) {
 
 			<div className="grid grid-cols-4 gap-4 py-4">
 				{collectionData.map((item) => (
-					<div className="flex flex-col gap-4 pb-4 shadow-md">
+					<div data-aos="zoom-in" className="flex flex-col gap-4 pb-4 shadow-md">
 						<img src={item.img} alt="/" />
 						<div className="text-center space-y-2">
 							<h2 className="text-[1.65rem] leading-[1.65rem]">{item.title}</h2>

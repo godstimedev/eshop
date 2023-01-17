@@ -10,7 +10,10 @@ function Products({}: Props) {
 			<h1 className="mb-[2rem] text-center">Products</h1>
 			<section className="grid grid-cols-1 lg:grid-cols-2 items-center place-items-center gap-[4rem]">
 				{productData.map((item) => (
-					<div className="shadow-md w-full md:w-[400px] h-[400px] flex flex-col gap-4 ">
+					<div
+						data-aos="zoom-in"
+						className="shadow-md w-full md:w-[400px] h-[400px] flex flex-col gap-4 "
+					>
 						<img src={item.img} alt="/" className="w-[100%] h-[65%]" />
 						<div className="px-4">
 							<h2 className="text-[1.65rem] leading-[1.65rem]">{item.name}</h2>
