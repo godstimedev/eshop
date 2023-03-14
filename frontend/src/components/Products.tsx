@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 // svg
 import { ReactComponent as ArrowLeft } from '../assets/svg/ArrowLeft.svg';
@@ -11,6 +11,7 @@ type Props = {};
 
 function Products({}: Props) {
 	const [currentIndex, setCurrentIndex] = useState(0);
+	const containerRef = useRef(null);
 
 	const prevSlide = () => {
 		const isFirstSlide = currentIndex === 0;

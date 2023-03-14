@@ -1,4 +1,3 @@
-import React from 'react';
 import VisionBg from '../assets/images/visionBg.png';
 
 type Props = {};
