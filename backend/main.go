@@ -2,6 +2,7 @@ package main
 
 import (
 	"backend/controllers"
+	"backend/middlewares"
 	"backend/models"
 	"fmt"
 
@@ -15,6 +16,10 @@ func main() {
 	public := r.Group("/api")
 
 	public.POST("/register", controllers.Register)
+	public.POST("/login", controllers.Login)
 
+	protected := r.Group("/api/auth")
+	protected.Use(middlewares.JwtAuthMiddleware())
+	protected.GET("/user", controllers.CurrentUser)
 	r.Run(":8080")
 }
