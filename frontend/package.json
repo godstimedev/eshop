@@ -1,4 +1,5 @@
 {
+	"homepage": "/frontend/",
 	"name": "e-store",
 	"version": "0.1.0",
 	"private": true,
