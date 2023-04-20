@@ -7,9 +7,13 @@ type Props = {};
 
 const Register = (props: Props) => {
 	const [showPass, setShowPass] = useState('password');
+	const [showSecondPass, setShowSecondPass] = useState('password');
 
 	const showPassword = () => {
 		setShowPass((prev) => (prev === 'password' ? 'text' : 'password'));
+	};
+	const showSecondPassword = () => {
+		setShowSecondPass((prev) => (prev === 'password' ? 'text' : 'password'));
 	};
 
 	return (
@@ -43,13 +47,13 @@ const Register = (props: Props) => {
 					</label>
 					<label htmlFor="password" className="relative">
 						<input
-							type={showPass}
+							type={showSecondPass}
 							name="password"
 							placeholder="Confirm your password"
 							className="block w-full py-2 px-4 border-2 border-gray-200 rounded-sm text-sm "
 						/>
-						<span className="absolute right-2 top-2.5 cursor-pointer" onClick={showPassword}>
-							{showPass === 'password' ? <Eye /> : <EyeSlash />}
+						<span className="absolute right-2 top-2.5 cursor-pointer" onClick={showSecondPassword}>
+							{showSecondPass === 'password' ? <Eye /> : <EyeSlash />}
 						</span>
 					</label>
 				</div>

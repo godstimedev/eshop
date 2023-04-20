@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ReactComponent as Eye } from '../../../assets/svg/Eye.svg';
 import { ReactComponent as EyeSlash } from '../../../assets/svg/EyeSlash.svg';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 type Props = {};
 
@@ -12,6 +12,7 @@ const Login = (props: Props) => {
 		setShowPass((prev) => (prev === 'password' ? 'text' : 'password'));
 	};
 
+	const navigate = useNavigate();
 	return (
 		<div className="w-full h-full grid place-items-center ">
 			<form className="flex flex-col gap-[2.5rem] ">
@@ -44,7 +45,9 @@ const Login = (props: Props) => {
 				</div>
 
 				<div className="flex flex-col gap-[1rem] text-center">
-					<button className="text-white bg-black">Sign in</button>
+					<button className="text-white bg-black" onClick={() => navigate('/')}>
+						Sign in
+					</button>
 					<Link to="/auth/register">
 						<button className="focus:border-2 border-gray-500">Sign up</button>
 					</Link>
