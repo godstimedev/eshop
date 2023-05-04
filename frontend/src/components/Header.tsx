@@ -46,7 +46,9 @@ function Header({}: Props) {
 						<li className="navItems ">Contact</li>
 						<div className="flex gap-3">
 							<Like className="cursor-pointer" />
-							<Avatar className="cursor-pointer" />
+							<NavLink to="/auth/login">
+								<Avatar className="cursor-pointer" />
+							</NavLink>
 						</div>
 					</ul>
 				</div>
@@ -83,7 +85,9 @@ function Header({}: Props) {
 						</div>
 					</Link>
 					<Like className="cursor-pointer" />
-					<Avatar className="cursor-pointer" />
+					<NavLink to="/auth/login">
+						<Avatar className="cursor-pointer" />
+					</NavLink>
 				</div>
 			</nav>
 			<div className=" lg:hidden flex space-x-5 ">

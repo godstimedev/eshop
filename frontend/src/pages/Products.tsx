@@ -14,7 +14,7 @@ function Products({}: Props) {
 						data-aos="zoom-in"
 						className="shadow-md w-full md:w-[400px] h-[400px] flex flex-col gap-4 "
 					>
-						<img src={item.img} alt="/" className="w-[100%] h-[65%]" />
+						<img loading="lazy" src={item.img} alt="/" className="w-[100%] h-[65%]" />
 						<div className="px-4">
 							<h2 className="text-[1.65rem] leading-[1.65rem]">{item.name}</h2>
 							<p className="text-[#B4B4B4] text-[14px]">{item.shortDescription}</p>

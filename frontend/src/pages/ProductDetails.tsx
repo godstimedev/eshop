@@ -55,9 +55,15 @@ function ProductDetails({}: Props) {
 		<main className="px-[1rem] lg:px-[6rem] my-[3rem] flex flex-col gap-[6rem]">
 			<section className="flex flex-col md:flex-row gap-8">
 				<div className="w-full md:w-[50%] flex justify-center flex-col gap-4">
-					{activeImg === 1 && <img src={ProductImg} alt="/" className="w-fit h-[60vh] object-cover" />}
-					{activeImg === 2 && <img src={ProductOne} alt="/" className="w-full h-[60vh] object-cover" />}
-					{activeImg === 3 && <img src={ProductTwo} alt="/" className="w-full h-[60vh] object-cover" />}
+					{activeImg === 1 && (
+						<img loading="lazy" src={ProductImg} alt="/" className="w-fit h-[60vh] object-cover" />
+					)}
+					{activeImg === 2 && (
+						<img loading="lazy" src={ProductOne} alt="/" className="w-full h-[60vh] object-cover" />
+					)}
+					{activeImg === 3 && (
+						<img loading="lazy" src={ProductTwo} alt="/" className="w-full h-[60vh] object-cover" />
+					)}
 					{activeImg === 4 && (
 						<img src={ProductThree} alt="/" className="w-full h-[60vh] object-cover" />
 					)}
