@@ -1,2 +1,4 @@
 -- SQLite
-SELECT * FROM users
+--INSERT into categories (name,specification) VALUES ("phones","specific accessories");
+
+--SELECT * FROM categories;

@@ -17,6 +17,7 @@ type User struct {
 	Last_name  string `gorm:"size:255;not null" json:"last_name"`
 	Email      string `gorm:"size:255; not null; unique" json:"email"`
 	Password   string `gorm:"size:255;not null" json:"password"`
+	IsAdmin    bool   `gorm:"not null;default:false" json:"is_admin"`
 }
 
 func (u *User) SaveUser() (*User, error) {
