@@ -20,5 +20,5 @@ func ConnectDataBase() {
 	//defer DB.Close()
 
 	// Migrate the schema
-	DB.AutoMigrate(&User{}, &Category{})
+	DB.AutoMigrate(&User{}, &Category{}, &Product{})
 }
