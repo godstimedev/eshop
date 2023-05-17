@@ -16,9 +16,9 @@ func ConnectDataBase() {
 		fmt.Println(err.Error())
 		panic("failed to connect database")
 	}
-	fmt.Print("connected successfully")
+	fmt.Print("connected with db successfully")
 	//defer DB.Close()
 
 	// Migrate the schema
-	DB.AutoMigrate(&User{}, &Category{}, &Product{})
+	DB.AutoMigrate(&User{}, &Category{}, &Product{}, &Reviews{}, &Cart{})
 }

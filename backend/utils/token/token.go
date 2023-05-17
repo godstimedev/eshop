@@ -12,20 +12,28 @@ import (
 )
 
 func GenerateToken(user_id uint) (string, error) {
-	token_lifespan, err := strconv.Atoi(os.Getenv("TOKEN_HOUR_LIFESPAN"))
-
-	if err != nil {
-		return "", err
+	tokenLifespanStr := os.Getenv("TOKEN_HOUR_LIFESPAN")
+	if tokenLifespanStr == "" {
+		return "", fmt.Errorf("TOKEN_HOUR_LIFESPAN environment variable is not set")
 	}
+
+	tokenLifespan, err := strconv.Atoi(tokenLifespanStr)
+	if err != nil {
+		return "", fmt.Errorf("failed to convert TOKEN_HOUR_LIFESPAN to integer: %w", err)
+	}
+
 	claims := jwt.MapClaims{}
 	claims["authorized"] = true
 	claims["user_id"] = user_id
-	claims["exp"] = time.Now().Add(time.Hour * time.Duration(token_lifespan)).Unix()
+	claims["exp"] = time.Now().Add(time.Hour * time.Duration(tokenLifespan)).Unix()
 
-	token := jwt.NewWithClaims(jwt.SigningMethodES256, claims)
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	tokenString, err := token.SignedString([]byte(os.Getenv("API_SECRET")))
+	if err != nil {
+		return "", fmt.Errorf("failed to generate token: %w", err)
+	}
 
-	return token.SignedString([]byte(os.Getenv("API_SECRET")))
-
+	return tokenString, nil
 }
 
 func TokenValid(c *gin.Context) error {

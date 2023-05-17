@@ -1,6 +1,7 @@
 package models
 
 import (
+	"errors"
 	"os"
 	"path/filepath"
 
@@ -11,6 +12,7 @@ import (
 type Product struct {
 	gorm.Model
 	Name             string          `gorm:"size:500;null" json:"name"`
+	CategoryID       int64           `json:"category_id"`
 	Category         Category        `gorm:"foreignKey:CategoryID" json:"category"`
 	Likes            uint64          `gorm:"size:500;null" json:"likes"`
 	Description      string          `gorm:"size:1000;null" json:"description"`
@@ -60,4 +62,12 @@ func SaveImageToFile(dirPath, filename string, imageData []byte) error {
 		return err
 	}
 	return nil
+}
+
+func GetAllProduct() ([]Product, error) {
+	var u []Product
+	if err := DB.Find(&u).Error; err != nil {
+		return u, errors.New("no product available")
+	}
+	return u, nil
 }

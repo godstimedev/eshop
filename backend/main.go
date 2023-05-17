@@ -4,10 +4,11 @@ import (
 	"backend/controllers"
 	"backend/middlewares"
 	"backend/models"
-	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
 
 // @title Gin Swagger Example API
@@ -27,7 +28,11 @@ import (
 // @schemes http
 
 func main() {
-	fmt.Printf("more to come!")
+	//fmt.Printf("more to come!")
+
+	if err := godotenv.Load(); err != nil {
+		log.Fatal("no .env found")
+	}
 	models.ConnectDataBase()
 	r := gin.Default()
 	public := r.Group("/api")
@@ -35,10 +40,18 @@ func main() {
 	public.POST("/register", controllers.Register)
 	public.POST("/login", controllers.Login)
 	public.GET("/category", controllers.GetCategory)
+	public.GET("/product", controllers.ProductList)
 
 	protected := r.Group("/api/auth")
 	protected.Use(middlewares.JwtAuthMiddleware())
 	protected.GET("/user", controllers.CurrentUser)
+	protected.POST("/product/create-review", controllers.CreateReview)
+
+	admin := r.Group("/api/admin")
+	admin.Use(middlewares.AdminMiddleware(models.DB))
+	admin.POST("/create-product", controllers.CreateProduct)
+	admin.POST("/create-category", controllers.CreateCategory)
+
 	r.Run(":8080")
 }
 

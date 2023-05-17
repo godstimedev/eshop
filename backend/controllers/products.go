@@ -35,4 +35,22 @@ func CreateProduct(c *gin.Context) {
 	product.Category = input.Category
 	product.Price = input.Price
 	product.Description = input.Description
+	product.Price = input.Price
+	product.Image = input.Image
+	product.InStock = input.InStock
+	product.Specification = input.Specification
+	newproduct, err := product.SaveProduct()
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"message": "client error occured"})
+	}
+	c.JSON(http.StatusCreated, gin.H{"data": newproduct})
+}
+
+func ProductList(c *gin.Context) {
+	product, err := models.GetAllProduct()
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "no product to display"})
+		return
+	}
+	c.JSON(http.StatusAccepted, gin.H{"status": true, "data": product})
 }
