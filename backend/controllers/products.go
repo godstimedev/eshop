@@ -67,3 +67,14 @@ func ProductId(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"status": true, "data": product})
 
 }
+
+func LikeProduct(c *gin.Context) {
+	product_id := c.Param("product_id")
+	product, err := models.UpdateProductLikes(product_id)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "unable to like product"})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"data": product})
+
+}

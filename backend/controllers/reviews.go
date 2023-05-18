@@ -35,6 +35,7 @@ func CreateReview(c *gin.Context) {
 		float64(reviews.Stars),
 	)
 	reviews.ReviewedProduct.Stars = float32(stars)
+	go models.DB.Save(&reviews.ReviewedProduct)
 	data, err := reviews.SaveReview()
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "an error occured wile creating the review"})
@@ -42,4 +43,26 @@ func CreateReview(c *gin.Context) {
 	}
 	c.JSON(http.StatusCreated, gin.H{"status": true, "data": data})
 
+}
+
+func GetProductReviews(c *gin.Context) {
+	id := c.Param("product_id")
+	reviews, err := models.GetProductReviews(id)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "invalid product id passed as argument"})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"data": reviews})
+
+}
+
+func GetSpecificReview(c *gin.Context) {
+	product_id := c.Param("product_id")
+	review_id := c.Param("review_id")
+	review, err := models.SpecificProductReview(product_id, review_id)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"data": review})
 }

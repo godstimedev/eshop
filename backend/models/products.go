@@ -79,3 +79,13 @@ func GetProductById(id string) (*Product, error) {
 	}
 	return &u, nil
 }
+
+func UpdateProductLikes(product_id string) (*Product, error) {
+	var product Product
+	if err := DB.Model(&product).Where("id = ?", product_id).Error; err != nil {
+		return &product, errors.New("cannot add likes to product... invalid product id passed")
+	}
+	product.Likes += 1
+	DB.Save(&product)
+	return &product, nil
+}

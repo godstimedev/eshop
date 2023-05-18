@@ -27,8 +27,16 @@ func (w *Reviews) SaveReview() (*Reviews, error) {
 
 func GetProductReviews(product_id string) ([]Reviews, error) {
 	var reviews []Reviews
-	if err := DB.Find(&reviews).Where("reviewed_product?=", product_id).Error; err != nil {
+	if err := DB.Find(&reviews).Where("reviewed_product= ?", product_id).Error; err != nil {
 		return reviews, errors.New("not a valid product id passed as argument")
 	}
 	return reviews, nil
+}
+
+func SpecificProductReview(product_id, review_id string) (*Reviews, error) {
+	var review Reviews
+	if err := DB.Model(&review).Where("product_id = ?", product_id).Where("review_id = ?", review_id).Error; err != nil {
+		return &Reviews{}, errors.New("invalid review id or invalid product id")
+	}
+	return &review, nil
 }
