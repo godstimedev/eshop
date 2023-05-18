@@ -71,3 +71,11 @@ func GetAllProduct() ([]Product, error) {
 	}
 	return u, nil
 }
+
+func GetProductById(id string) (*Product, error) {
+	var u Product
+	if err := DB.Preload("Category").First(&u, id).Error; err != nil {
+		return &u, errors.New("no product match the query")
+	}
+	return &u, nil
+}

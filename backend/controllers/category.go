@@ -18,7 +18,7 @@ func GetCategory(c *gin.Context) {
 		c.JSON(http.StatusNoContent, gin.H{"message": "no category yet"})
 		return
 	}
-	c.JSON(http.StatusAccepted, gin.H{"status": true, "data": u})
+	c.JSON(http.StatusOK, gin.H{"status": true, "data": u})
 
 }
 

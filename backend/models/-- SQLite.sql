@@ -3,8 +3,8 @@
 
 --SELECT * FROM products;
 --SELECT * FROM users;
---UPDATE users SET is_admin = true WHERE id= 1;
-INSERT INTO products (
+UPDATE products SET category_id = 1 WHERE id= 1;
+--INSERT INTO products (
     name,
     likes,
     category_id,
@@ -24,4 +24,4 @@ VALUES (
     4.5,
     true
 
-);
+--);

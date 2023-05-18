@@ -41,6 +41,7 @@ func main() {
 	public.POST("/login", controllers.Login)
 	public.GET("/category", controllers.GetCategory)
 	public.GET("/product", controllers.ProductList)
+	public.GET("/product/:id", controllers.ProductId)
 
 	protected := r.Group("/api/auth")
 	protected.Use(middlewares.JwtAuthMiddleware())
