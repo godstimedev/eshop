@@ -2,6 +2,7 @@ package main
 
 import (
 	"backend/controllers"
+	_ "backend/docs"
 	"backend/middlewares"
 	"backend/models"
 	"log"
@@ -9,24 +10,16 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
-// @title Gin Swagger Example API
+// @title Eshop API documentation
 // @version 1.0
-// @description This is a sample server server.
-// @termsOfService http://swagger.io/terms/
+// @description api documentation for Eshop.
 
-// @contact.name API Support
-// @contact.url http://www.swagger.io/support
-// @contact.email support@swagger.io
-
-// @license.name Apache 2.0
-// @license.url http://www.apache.org/licenses/LICENSE-2.0.html
-
-// @host localhost:3000
-// @BasePath /
-// @schemes http
-
+// @host localhost:8080
+// @BasePath /api
 func main() {
 	//fmt.Printf("more to come!")
 
@@ -35,6 +28,9 @@ func main() {
 	}
 	models.ConnectDataBase()
 	r := gin.Default()
+	r.GET("/docs/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	//r.GET("/docs/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+
 	public := r.Group("/api")
 
 	public.POST("/register", controllers.Register)

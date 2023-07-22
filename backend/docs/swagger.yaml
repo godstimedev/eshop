@@ -1,0 +1,60 @@
+basePath: /api
+definitions:
+  controllers.CustomUser:
+    properties:
+      email:
+        type: string
+      first_name:
+        type: string
+      last_name:
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    - first_name
+    - last_name
+    - password
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: api documentation for Eshop.
+  title: Eshop API documentation
+  version: "1.0"
+paths:
+  /:
+    get:
+      consumes:
+      - '*/*'
+      description: get the status of server.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Show the status of server.
+      tags:
+      - root
+  /register:
+    post:
+      description: Create Eshop Account
+      parameters:
+      - description: create account
+        in: body
+        name: register
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.CustomUser'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Create Account
+      tags:
+      - customuser
+swagger: "2.0"
