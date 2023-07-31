@@ -1,6 +1,8 @@
 package models
 
 import (
+	"errors"
+
 	"github.com/jinzhu/gorm"
 	"github.com/shopspring/decimal"
 )
@@ -30,5 +32,15 @@ func (w *Cart) BeforeSave() error {
 	w.TotalPrice = w.Product.DiscountPrice.Mul(quantity)
 	DB.Save(&w)
 	return nil
+
+}
+
+func GetCart(user_id string) (*Cart, error) {
+	var carts Cart
+	err := DB.Model(&carts).Where("user_id", user_id).Error
+	if err != nil {
+		return &carts, errors.New("user has no product in cart")
+	}
+	return &carts, nil
 
 }
