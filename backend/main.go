@@ -46,24 +46,24 @@ func main() {
 
 	public := r.Group("/api")
 
-	public.POST("/register", controllers.Register)
-	public.POST("/login", controllers.Login)
-	public.GET("/category", controllers.GetCategory)
-	public.GET("/product", controllers.ProductList)
-	public.GET("/product/:id", controllers.ProductId)
-	public.GET("/review/product/:product_id", controllers.GetProductReviews)
+	public.POST("register", controllers.Register)
+	public.POST("login", controllers.Login)
+	public.GET("category", controllers.GetCategory)
+	public.GET("product", controllers.ProductList)
+	public.GET("product/:id", controllers.ProductId)
+	public.GET("review/product/:product_id", controllers.GetProductReviews)
 	public.GET("review/product/:product_id/:review_id", controllers.GetSpecificReview)
 
 	protected := r.Group("/api/auth")
 	protected.Use(middlewares.JwtAuthMiddleware())
-	protected.GET("/user", controllers.CurrentUser)
-	protected.POST("/product/create-review", controllers.CreateReview)
-	protected.PUT("/product/likes/:product_id", controllers.LikeProduct)
+	protected.GET("user", controllers.CurrentUser)
+	protected.POST("product/create-review", controllers.CreateReview)
+	protected.PUT("product/likes/:product_id", controllers.LikeProduct)
 
 	admin := r.Group("/api/admin")
 	admin.Use(middlewares.AdminMiddleware(models.DB))
-	admin.POST("/create-product", controllers.CreateProduct)
-	admin.POST("/create-category", controllers.CreateCategory)
+	admin.POST("create-product", controllers.CreateProduct)
+	admin.POST("create-category", controllers.CreateCategory)
 
 	r.Run(":8080")
 }
