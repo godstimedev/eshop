@@ -1,19 +1,22 @@
 package models
 
-import "github.com/jinzhu/gorm"
+import (
+	"github.com/jinzhu/gorm"
+	"github.com/shopspring/decimal"
+)
 
 type Cart struct {
 	gorm.Model
-	User              User    `gorm:"foreignKey:UserID" json:"user"`
-	UserID            int64   `json:"user_id"`
-	ProductID         int64   `json:"product_id"`
-	Product           Product `gorm:"foreignKey:ProductID" json:"product"`
-	Quantity          int64   `gorm:"size:1000" json:"quantity"`
-	QuantityBought    int64   `gorm:"size:1000" json:"QuantityBought"`
-	QuantityAvailable int64   `gorm:"size:1000" json:"QuantityAvailable"`
-	IndividualPrice   float32 `json:"individual_price"`
-	TotalPrice        float32 `json:"total_price"`
-	PaidFor           bool    `gorm:"default:false" json:"paid_for"`
+	User              User            `gorm:"foreignKey:UserID" json:"user"`
+	UserID            int64           `json:"user_id"`
+	ProductID         int64           `json:"product_id"`
+	Product           Product         `gorm:"foreignKey:ProductID" json:"product"`
+	Quantity          int64           `gorm:"size:1000" json:"quantity"`
+	QuantityBought    int64           `gorm:"size:1000" json:"QuantityBought"`
+	QuantityAvailable int64           `gorm:"size:1000" json:"QuantityAvailable"`
+	IndividualPrice   decimal.Decimal `json:"individual_price"`
+	TotalPrice        decimal.Decimal `json:"total_price"`
+	PaidFor           bool            `gorm:"default:false" json:"paid_for"`
 }
 
 func (w *Cart) BeforeSave() error {
@@ -22,6 +25,9 @@ func (w *Cart) BeforeSave() error {
 		return err
 	}
 	w.Quantity += 1
+	quantity := decimal.NewFromFloat(float64(w.Quantity))
+
+	w.TotalPrice = w.Product.DiscountPrice.Mul(quantity)
 	DB.Save(&w)
 	return nil
 
