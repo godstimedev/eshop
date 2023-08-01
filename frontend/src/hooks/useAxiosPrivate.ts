@@ -1,15 +1,19 @@
 import { useEffect } from 'react';
 import { axiosPrivate } from '../library';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from '../redux/store/store';
 
 const useAxiosPrivate = () => {
-	const { accessToken } = useSelector((state: any) => state.auth.access);
+	const { token } = useAppSelector((state: any) => state.auth);
+	console.log(token);
+
+	const tokens = localStorage.getItem('token');
+	console.log(tokens);
 
 	useEffect(() => {
 		const requestInterceptor = axiosPrivate.interceptors.request.use(
 			(config: any) => {
 				if (!config?.headers['Authorization']) {
-					config.headers['Authorization'] = `Bearer ${accessToken}`;
+					config.headers['Authorization'] = `Bearer ${tokens}`;
 				}
 
 				return config;
@@ -21,7 +25,7 @@ const useAxiosPrivate = () => {
 		return () => {
 			axiosPrivate.interceptors.request.eject(requestInterceptor);
 		};
-	}, [accessToken]);
+	}, [token]);
 
 	return axiosPrivate;
 };

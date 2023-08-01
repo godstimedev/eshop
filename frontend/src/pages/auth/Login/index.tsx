@@ -31,10 +31,9 @@ const Login = (props: Props) => {
 		console.log(formData);
 
 		mutate(formData, {
-			onSuccess: (_data: any) => {
-				dispatch(setAuth(_data?.data?.token));
-				localStorage.setItem('token', _data?.data?.token);
-				console.log(_data);
+			onSuccess: (response: any) => {
+				dispatch(setAuth(response?.data?.token));
+				localStorage.setItem('token', response?.data?.token);
 				navigate('/');
 			},
 		});

@@ -5,7 +5,7 @@ const initialState = {
 	// refresh: undefined,
 };
 
-const authSlise = createSlice({
+const authSlice = createSlice({
 	name: 'auth',
 	initialState,
 	reducers: {
@@ -20,5 +20,5 @@ const authSlise = createSlice({
 	},
 });
 
-export const { setAuth, clearAuth } = authSlise.actions;
-export default authSlise.reducer;
+export const { setAuth, clearAuth } = authSlice.actions;
+export default authSlice.reducer;
