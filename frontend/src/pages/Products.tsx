@@ -1,10 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { productData } from '../data/productData';
+import { useProducts } from '../hooks';
 
 type Props = {};
 
 function Products({}: Props) {
+	const { data, isLoading, isError, error } = useProducts();
+
 	return (
 		<div className="min-h-[100vh] px-[2rem] md:px-[6rem] my-[2rem]">
 			<h1 className="mb-[2rem] text-center">Products</h1>
@@ -26,6 +29,12 @@ function Products({}: Props) {
 						</div>
 					</div>
 				))}
+
+				<div>
+					{data?.data?.map((product: any) => (
+						<h2>{product.name}</h2>
+					))}
+				</div>
 			</section>
 		</div>
 	);

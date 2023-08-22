@@ -8,6 +8,7 @@ import { ReactComponent as Like } from '../assets/svg/Like.svg';
 import { ReactComponent as Avatar } from '../assets/svg/Avatar.svg';
 import { ReactComponent as Menu } from '../assets/svg/Menu.svg';
 import { useAppSelector } from '../redux/store/store';
+import { useUser } from '../hooks/useUser';
 
 type Props = {};
 
@@ -17,6 +18,10 @@ function Header({}: Props) {
 
 	const { cartItems } = useAppSelector((store) => store.cart);
 	console.log(cartItems.length);
+
+	const { data: user } = useUser();
+
+	console.log(user);
 
 	return (
 		<header className="w-full flex justify-between lg:flex-col lg:gap-4 items-center p-4">
@@ -36,13 +41,13 @@ function Header({}: Props) {
 						<li className="navItems">
 							<NavLink to="/">Home</NavLink>
 						</li>
-						<li className="navItems ">Spaces</li>
+						{/* <li className="navItems ">Spaces</li> */}
 						<li className="navItems ">
-							<NavLink to="products">Products & Services</NavLink>
+							<NavLink to="products">Products</NavLink>
 						</li>
-						<li className="navItems ">Showrooms</li>
+						{/* <li className="navItems ">Showrooms</li>
 						<li className="navItems ">Company</li>
-						<li className="navItems ">Media</li>
+						<li className="navItems ">Media</li> */}
 						<li className="navItems ">Contact</li>
 						<div className="flex gap-3">
 							<Like className="cursor-pointer" />
@@ -54,23 +59,29 @@ function Header({}: Props) {
 				</div>
 			</div>
 
+			{user && (
+				<div>
+					Hello <h2>{user?.data.first_name}!</h2>
+				</div>
+			)}
+
 			<div>
 				<img src={Logo} alt="Logo" className=" w-[55px] h-[55px]" />
 			</div>
 
-			<nav className="hidden lg:flex items-center space-x-10">
-				<Search className="cursor-pointer" />
+			<nav className="hidden w-[100%] max-w-[1024px] lg:flex justify-between items-center space-x-10 ">
+				<Search className="cursor-pointer " />
 				<ul className="flex space-x-5">
 					<li className="navItems">
 						<NavLink to="/">Home</NavLink>
 					</li>
-					<li className="navItems ">Spaces</li>
+					{/* <li className="navItems ">Spaces</li> */}
 					<li className="navItems ">
-						<NavLink to="products">Products & Services</NavLink>
+						<NavLink to="products">Products</NavLink>
 					</li>
-					<li className="navItems ">Showrooms</li>
+					{/* <li className="navItems ">Showrooms</li>
 					<li className="navItems ">Company</li>
-					<li className="navItems ">Media</li>
+					<li className="navItems ">Media</li> */}
 					<li className="navItems ">Contact</li>
 				</ul>
 				<div className="flex space-x-5">

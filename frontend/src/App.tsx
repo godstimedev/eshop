@@ -1,12 +1,13 @@
 import { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
+import { QueryClientProvider, QueryClient } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Cart from './pages/Cart';
 import Home from './pages/Home';
 import ProductDetails from './pages/ProductDetails';
 import Products from './pages/Products';
-
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // You can also use <link> for styles
 import Login from './pages/auth/Login';
@@ -25,22 +26,28 @@ function App() {
 
 	const { pathname } = useLocation();
 
-	return (
-		<div className="min-h-[100vh] flex flex-col justify-between">
-			{pathname.includes('/auth/') === false && <Header />}
-			<Routes>
-				<Route element={<Layout />}>
-					<Route path="auth/login" element={<Login />} />
-					<Route path="auth/register" element={<Register />} />
-				</Route>
+	const queryClient = new QueryClient();
 
-				<Route path="/" element={<Home />} />
-				<Route path="products" element={<Products />} />
-				<Route path="product/:id" element={<ProductDetails />} />
-				<Route path="cart" element={<Cart />} />
-			</Routes>
-			{pathname.includes('/auth/') === false && <Footer />}
-		</div>
+	return (
+		<QueryClientProvider client={queryClient}>
+			<div className="min-h-[100vh] flex flex-col justify-between">
+				{pathname.includes('/auth/') === false && <Header />}
+				<Routes>
+					<Route element={<Layout />}>
+						<Route path="auth/login" element={<Login />} />
+						<Route path="auth/register" element={<Register />} />s
+					</Route>
+
+					<Route path="/" element={<Home />} />
+					<Route path="products" element={<Products />} />
+					<Route path="product/:id" element={<ProductDetails />} />
+					<Route path="cart" element={<Cart />} />
+				</Routes>
+				{pathname.includes('/auth/') === false && <Footer />}
+			</div>
+
+			<ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
+		</QueryClientProvider>
 	);
 }
 
