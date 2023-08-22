@@ -37,10 +37,19 @@ func (w *Cart) BeforeSave() error {
 
 func GetCart(user_id string) (*Cart, error) {
 	var carts Cart
-	err := DB.Model(&carts).Where("user_id", user_id).Error
+	err := DB.Model(&carts).Where("user_id =?", user_id).Error
 	if err != nil {
 		return &carts, errors.New("user has no product in cart")
 	}
 	return &carts, nil
 
+}
+
+func GetSpecificCart(user_id, id string) (*Cart, error) {
+	var cart Cart
+	err := DB.Model(&cart).Where("id =?", id).Where("user_id =?", user_id).Error
+	if err != nil {
+		return &cart, errors.New("cart with id does not exist")
+	}
+	return &cart, nil
 }

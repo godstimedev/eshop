@@ -55,6 +55,7 @@ func main() {
 	public.GET("category", controllers.GetCategory)
 	public.GET("product", controllers.ProductList)
 	public.GET("product/:id", controllers.ProductId)
+	public.GET("products", controllers.SearchProduct)
 	public.GET("review/product/:product_id", controllers.GetProductReviews)
 	public.GET("review/product/:product_id/:review_id", controllers.GetSpecificReview)
 
@@ -63,6 +64,8 @@ func main() {
 	protected.GET("user", controllers.CurrentUser)
 	protected.POST("product/create-review", controllers.CreateReview)
 	protected.PUT("product/likes/:product_id", controllers.LikeProduct)
+	protected.GET("cart", controllers.GetCart)
+	protected.GET("cart/:id", controllers.SpecificCart)
 
 	admin := r.Group("/api/admin")
 	admin.Use(middlewares.AdminMiddleware(models.DB))

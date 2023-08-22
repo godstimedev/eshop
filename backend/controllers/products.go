@@ -78,3 +78,13 @@ func LikeProduct(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"data": product})
 
 }
+
+func SearchProduct(c *gin.Context) {
+	searched_name := c.DefaultQuery("q", "")
+	products, err := models.FilterProducts(searched_name)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "no products found for the keyword searched"})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"status": true, "data": products})
+}

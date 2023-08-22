@@ -89,3 +89,23 @@ func UpdateProductLikes(product_id string) (*Product, error) {
 	DB.Save(&product)
 	return &product, nil
 }
+
+func FilterProducts(product_name string) ([]Product, error) {
+	var products []Product
+	var items []Product
+	err := DB.Find(&products).Error
+	if err != nil {
+		return products, errors.New("there is no product to display")
+	}
+	for _, item := range products {
+		if product_name == "" || contains(item.Name, product_name) {
+			items = append(items, item)
+		}
+	}
+	return items, nil
+
+}
+
+func contains(s, substr string) bool {
+	return len(s) >= len(substr) && s[:len(substr)] == substr
+}
