@@ -25,3 +25,5 @@ SELECT * FROM users;
 --     true
 
 -- );
+
+UPDATE users SET isadmin = true WHERE id = 1;
