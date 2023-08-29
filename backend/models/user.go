@@ -79,6 +79,30 @@ func LoginCheck(email, password string) (string, error) {
 	return token, nil
 }
 
+func LoginCheckAdmin(email, password string) (string, error) {
+	u := User{}
+	//var err error
+
+	err := DB.Model(User{}).Where("email=?", email).Where("isadmin=?", true).Take(&u).Error
+	if err != nil {
+		return "", err
+	}
+
+	err = VerifyPassword(password, u.Password)
+
+	if err != nil && err == bcrypt.ErrMismatchedHashAndPassword {
+		return "", err
+	}
+	token, err := token.GenerateToken(u.ID)
+	//fmt.Print("token: ", token)
+	if err != nil {
+		//fmt.Print("err: ", err)
+		return "", err
+	}
+
+	return token, nil
+}
+
 func GetUserByID(uid uint) (User, error) {
 
 	var u User

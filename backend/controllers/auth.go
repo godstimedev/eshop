@@ -103,3 +103,24 @@ func Login(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{"token": token})
 }
+
+func LoginAdmin(c *gin.Context) {
+	var input LoginInput
+
+	if err := c.ShouldBindJSON(&input); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	user := models.User{}
+	user.Email = input.Email
+	user.Password = input.Password
+
+	token, err := models.LoginCheckAdmin(user.Email, user.Password)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "invalid email or password"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"token": token})
+}

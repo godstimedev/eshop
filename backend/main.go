@@ -52,6 +52,7 @@ func main() {
 
 	public.POST("register", controllers.Register)
 	public.POST("login", controllers.Login)
+	public.POST("admin/login", controllers.LoginAdmin)
 	public.GET("category", controllers.GetCategory)
 	public.GET("product", controllers.ProductList)
 	public.GET("product/:id", controllers.ProductId)
