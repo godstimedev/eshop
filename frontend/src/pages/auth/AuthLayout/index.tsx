@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 
 type Props = {};
 
-const Layout = (props: Props) => {
+const AuthLayout = (props: Props) => {
 	return (
 		<div className="flex flex-col md:flex-row  md:h-[100vh]">
 			<div className="bg-black md:w-[50%] h-[100vh]  text-4xl text-white text-center flex flex-col items-center justify-center">
@@ -16,4 +16,4 @@ const Layout = (props: Props) => {
 	);
 };
 
-export default Layout;
+export default AuthLayout;
