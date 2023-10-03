@@ -4,7 +4,7 @@ import (
 	"backend/models"
 	"backend/utils/token"
 	"net/http"
-
+	
 	"github.com/gin-gonic/gin"
 )
 
@@ -15,9 +15,19 @@ type CustomUser struct {
 	Password   string `json:"password" binding:"required"`
 }
 
+
 type LoginInput struct {
 	Email    string `json:"email" binding:"required"`
 	Password string `json:"password" binding:"required"`
+}
+
+type UserResponse struct {
+	Message string      `json:"message"`
+	Data    models.User `json:"data"`
+}
+
+type LoginResponse struct {
+	Token string `json:"token"`
 }
 
 // RegisterAccount    godoc
@@ -27,7 +37,7 @@ type LoginInput struct {
 // @Produce          application/json
 // @Tags             customuser
 // @Success          200 {object} nil
-// @Router           /api/register [post]
+// @Router           /register [post]
 func Register(c *gin.Context) {
 	var input CustomUser
 	if err := c.ShouldBindJSON(&input); err != nil {
@@ -49,13 +59,13 @@ func Register(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"message": "registered successfully"})
 }
 
-// ShowActiveUser    godoc
-// @Summary          Show Authenticated User
-// @Description      Authenticated User
-// @Produce          application/json
-// @Tags             customuser
-// @Success          200 {object} nil
-// @Router           /api/auth/user [get]
+// CurrentUser godoc
+// @Summary Show Authenticated User
+// @Description Get information about the authenticated user
+// @Produce json
+// @Tags currentuser
+// @Success 200 {object} UserResponse
+// @Router /auth/user [get]
 func CurrentUser(c *gin.Context) {
 
 	user_id, err := token.ExtractTokenID(c)
@@ -80,9 +90,9 @@ func CurrentUser(c *gin.Context) {
 // @Description      Login User
 // @Param            register body LoginInput true "Login"
 // @Produce          application/json
-// @Tags             customuser
-// @Success          200 {object} nil
-// @Router           /api/login [post]
+// @Tags             login
+// @Success          200 {object} LoginResponse
+// @Router           /login [post]
 func Login(c *gin.Context) {
 	var input LoginInput
 
@@ -104,6 +114,14 @@ func Login(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"token": token})
 }
 
+// LoginAdmin    godoc
+// @Summary          Login Admin
+// @Description      Login Admin
+// @Param            register body LoginInput true "Login"
+// @Produce          application/json
+// @Tags             login
+// @Success          200 {object} LoginResponse
+// @Router           /admin/login [post]
 func LoginAdmin(c *gin.Context) {
 	var input LoginInput
 

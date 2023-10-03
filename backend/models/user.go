@@ -83,7 +83,8 @@ func LoginCheckAdmin(email, password string) (string, error) {
 	u := User{}
 	//var err error
 
-	err := DB.Model(User{}).Where("email=?", email).Where("isadmin=?", true).Take(&u).Error
+	err := DB.Model(User{}).Where("email=?", email).Where("is_admin=?", true).Take(&u).Error
+	//fmt.Println(err)
 	if err != nil {
 		return "", err
 	}

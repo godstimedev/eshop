@@ -1,5 +1,10 @@
 basePath: /api
 definitions:
+  controllers.CreatedProduct:
+    properties:
+      data:
+        $ref: '#/definitions/models.Product'
+    type: object
   controllers.CustomUser:
     properties:
       email:
@@ -15,6 +20,146 @@ definitions:
     - first_name
     - last_name
     - password
+    type: object
+  controllers.LoginInput:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    - password
+    type: object
+  controllers.LoginResponse:
+    properties:
+      token:
+        type: string
+    type: object
+  controllers.Product:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/models.Product'
+        type: array
+      status:
+        type: boolean
+    type: object
+  controllers.Products:
+    properties:
+      category:
+        $ref: '#/definitions/models.Category'
+      category_id:
+        type: integer
+      count_users_review:
+        type: integer
+      description:
+        type: string
+      discount_percent:
+        type: number
+      discount_price:
+        type: number
+      image:
+        items:
+          type: integer
+        type: array
+      in_stock:
+        type: boolean
+      likes:
+        type: integer
+      name:
+        type: string
+      price:
+        type: number
+      specification:
+        type: string
+      stars:
+        type: number
+    required:
+    - category
+    - name
+    type: object
+  controllers.UserResponse:
+    properties:
+      data:
+        $ref: '#/definitions/models.User'
+      message:
+        type: string
+    type: object
+  models.Category:
+    properties:
+      createdAt:
+        type: string
+      deletedAt:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      specification:
+        type: string
+      updatedAt:
+        type: string
+    type: object
+  models.Product:
+    properties:
+      category:
+        $ref: '#/definitions/models.Category'
+      category_id:
+        type: integer
+      count_users_review:
+        type: integer
+      createdAt:
+        type: string
+      deletedAt:
+        type: string
+      description:
+        type: string
+      discount_percent:
+        type: number
+      discount_price:
+        type: number
+      id:
+        type: integer
+      image:
+        items:
+          type: integer
+        type: array
+      in_stock:
+        type: boolean
+      likes:
+        type: integer
+      name:
+        type: string
+      price:
+        type: number
+      specification:
+        type: string
+      stars:
+        type: number
+      updatedAt:
+        type: string
+    type: object
+  models.User:
+    properties:
+      createdAt:
+        type: string
+      deletedAt:
+        type: string
+      email:
+        type: string
+      first_name:
+        type: string
+      id:
+        type: integer
+      is_admin:
+        type: boolean
+      last_name:
+        type: string
+      password:
+        type: string
+      updatedAt:
+        type: string
     type: object
 host: localhost:8080
 info:
@@ -39,7 +184,80 @@ paths:
       summary: Show the status of server.
       tags:
       - root
-  /register:
+  /admin/create-product:
+    post:
+      description: Create Product
+      parameters:
+      - description: products
+        in: body
+        name: create
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.Products'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/controllers.CreatedProduct'
+      summary: Admin can create a product
+      tags:
+      - CreateProduct
+  /admin/login:
+    post:
+      description: Login Admin
+      parameters:
+      - description: Login
+        in: body
+        name: register
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.LoginInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.LoginResponse'
+      summary: Login Admin
+      tags:
+      - login
+  /api/auth/user:
+    get:
+      description: Get information about the authenticated user
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.UserResponse'
+      summary: Show Authenticated User
+      tags:
+      - currentuser
+  /api/login:
+    post:
+      description: Login User
+      parameters:
+      - description: Login
+        in: body
+        name: register
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.LoginInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.LoginResponse'
+      summary: Login Users
+      tags:
+      - login
+  /api/register:
     post:
       description: Create Eshop Account
       parameters:
@@ -57,4 +275,17 @@ paths:
       summary: Create Account
       tags:
       - customuser
+  /product:
+    get:
+      description: Display Products
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.Product'
+      summary: show a list of Products Available
+      tags:
+      - ListProducts
 swagger: "2.0"

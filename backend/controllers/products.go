@@ -24,10 +24,28 @@ type Products struct {
 	InStock          bool            `json:"in_stock"`
 }
 
+type CreatedProduct struct {
+	Data models.Product `json:"data"`
+}
+
+type Product struct {
+	Status bool `json:"status"`
+	Data []models.Product `json:"data"`
+
+}
+
+// CreateProduct    godoc
+// @Summary          Admin can create a product
+// @Description      Create Product
+// @Param            create body Products true "products"
+// @Produce          application/json
+// @Tags             CreateProduct
+// @Success          201 {object} CreatedProduct
+// @Router           /admin/create-product [post]
 func CreateProduct(c *gin.Context) {
 	var input Products
 	if err := c.ShouldBindJSON(&input); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "a client errored occured"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "a client error occured"})
 		return
 	}
 
@@ -47,6 +65,13 @@ func CreateProduct(c *gin.Context) {
 	c.JSON(http.StatusCreated, gin.H{"data": newproduct})
 }
 
+// ListProduct    godoc
+// @Summary          show a list of Products Available
+// @Description      Display Products
+// @Produce          application/json
+// @Tags             ListProducts
+// @Success          200 {object} Product
+// @Router           /product [get]
 func ProductList(c *gin.Context) {
 	product, err := models.GetAllProduct()
 	if err != nil {
