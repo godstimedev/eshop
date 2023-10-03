@@ -1,11 +1,11 @@
-import Logo from '../assets/images/newLogo.png';
-import { ReactComponent as ArrowDown } from '../assets/svg/ArrowDown.svg';
+import { useState } from 'react';
+import Logo from '../../assets/images/newLogo.png';
 
 // svgs
-import { ReactComponent as Facebook } from '../assets/svg/Facebook.svg';
-import { ReactComponent as Twitter } from '../assets/svg/Twitter.svg';
-import { ReactComponent as Instagram } from '../assets/svg/Instagram.svg';
-import { useState } from 'react';
+import { ReactComponent as ArrowDown } from '../../assets/svg/ArrowDown.svg';
+import { ReactComponent as Facebook } from '../../assets/svg/Facebook.svg';
+import { ReactComponent as Twitter } from '../../assets/svg/Twitter.svg';
+import { ReactComponent as Instagram } from '../../assets/svg/Instagram.svg';
 
 type Props = {};
 

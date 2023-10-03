@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 // svg
 import { ReactComponent as ArrowLeft } from '../assets/svg/ArrowLeft.svg';

@@ -1,18 +1,24 @@
 import { useEffect } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
-import Footer from './components/Footer';
-import Header from './components/Header';
-import Cart from './pages/Cart';
-import Home from './pages/Home';
-import ProductDetails from './pages/ProductDetails';
-import Products from './pages/Products';
+import { AdminLayout, AppLayout } from './layouts';
+import {
+	AdminLogin,
+	AdminProducts,
+	AuthLayout,
+	Cart,
+	Categories,
+	Dashboard,
+	Home,
+	Login,
+	ProductDetails,
+	Products,
+	Register,
+} from './pages';
+
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // You can also use <link> for styles
-import Login from './pages/auth/Login';
-import Layout from './pages/auth/Layout';
-import Register from './pages/auth/Register';
 
 function App() {
 	useEffect(() => {
@@ -26,25 +32,44 @@ function App() {
 
 	const { pathname } = useLocation();
 
+	const navigate = useNavigate();
+
+	const authenticated = true;
+
 	const queryClient = new QueryClient();
+
+	// search on use layout
+
+	useEffect(() => {
+		if (pathname === '/admin' && authenticated) {
+			navigate('/admin/dashboard', { replace: true });
+		} else if (pathname === '/admin' && !authenticated) {
+			navigate('/admin/login', { replace: true });
+		}
+	}, [pathname]);
 
 	return (
 		<QueryClientProvider client={queryClient}>
-			<div className="min-h-[100vh] flex flex-col justify-between">
-				{pathname.includes('/auth/') === false && <Header />}
-				<Routes>
-					<Route element={<Layout />}>
-						<Route path="auth/login" element={<Login />} />
-						<Route path="auth/register" element={<Register />} />s
-					</Route>
-
+			<Routes>
+				<Route element={<AppLayout />}>
 					<Route path="/" element={<Home />} />
 					<Route path="products" element={<Products />} />
 					<Route path="product/:id" element={<ProductDetails />} />
 					<Route path="cart" element={<Cart />} />
-				</Routes>
-				{pathname.includes('/auth/') === false && <Footer />}
-			</div>
+				</Route>
+
+				<Route element={<AuthLayout />}>
+					<Route path="auth/login" element={<Login />} />
+					<Route path="auth/register" element={<Register />} />s
+				</Route>
+
+				<Route path="admin/login" element={<AdminLogin />} />
+				<Route element={<AdminLayout />}>
+					<Route path="admin/dashboard" element={<Dashboard />} />
+					<Route path="admin/categories" element={<Categories />} />
+					<Route path="admin/products" element={<AdminProducts />} />
+				</Route>
+			</Routes>
 
 			<ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
 		</QueryClientProvider>

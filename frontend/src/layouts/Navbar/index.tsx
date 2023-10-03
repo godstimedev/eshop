@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useClickOutside } from '@mantine/hooks';
 import { Link, NavLink } from 'react-router-dom';
-import Logo from '../assets/images/newLogo.png';
-import { ReactComponent as Search } from '../assets/svg/Search.svg';
-import { ReactComponent as Cart } from '../assets/svg/Cart.svg';
-import { ReactComponent as Like } from '../assets/svg/Like.svg';
-import { ReactComponent as Avatar } from '../assets/svg/Avatar.svg';
-import { ReactComponent as Menu } from '../assets/svg/Menu.svg';
-import { useAppSelector } from '../redux/store/store';
-import { useUser } from '../hooks/useUser';
+import Logo from '../../assets/images/newLogo.png';
+import { ReactComponent as Search } from '../../assets/svg/Search.svg';
+import { ReactComponent as Cart } from '../../assets/svg/Cart.svg';
+import { ReactComponent as Like } from '../../assets/svg/Like.svg';
+import { ReactComponent as Avatar } from '../../assets/svg/Avatar.svg';
+import { ReactComponent as Menu } from '../../assets/svg/Menu.svg';
+import { useAppSelector } from '../../redux/store/store';
+import { useUser } from '../../hooks/useUser';
 
 type Props = {};
 
