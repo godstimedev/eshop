@@ -95,7 +95,7 @@
                 }
             }
         },
-        "/api/auth/user": {
+        "/auth/user": {
             "get": {
                 "description": "Get information about the authenticated user",
                 "produces": [
@@ -115,7 +115,7 @@
                 }
             }
         },
-        "/api/login": {
+        "/login": {
             "post": {
                 "description": "Login User",
                 "produces": [
@@ -146,7 +146,27 @@
                 }
             }
         },
-        "/api/register": {
+        "/product": {
+            "get": {
+                "description": "Display Products",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "ListProducts"
+                ],
+                "summary": "show a list of Products Available",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/controllers.Product"
+                        }
+                    }
+                }
+            }
+        },
+        "/register": {
             "post": {
                 "description": "Create Eshop Account",
                 "produces": [
@@ -170,26 +190,6 @@
                 "responses": {
                     "200": {
                         "description": "OK"
-                    }
-                }
-            }
-        },
-        "/product": {
-            "get": {
-                "description": "Display Products",
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "ListProducts"
-                ],
-                "summary": "show a list of Products Available",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/controllers.Product"
-                        }
                     }
                 }
             }

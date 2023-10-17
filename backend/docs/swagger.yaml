@@ -224,7 +224,7 @@ paths:
       summary: Login Admin
       tags:
       - login
-  /api/auth/user:
+  /auth/user:
     get:
       description: Get information about the authenticated user
       produces:
@@ -237,7 +237,7 @@ paths:
       summary: Show Authenticated User
       tags:
       - currentuser
-  /api/login:
+  /login:
     post:
       description: Login User
       parameters:
@@ -257,7 +257,20 @@ paths:
       summary: Login Users
       tags:
       - login
-  /api/register:
+  /product:
+    get:
+      description: Display Products
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.Product'
+      summary: show a list of Products Available
+      tags:
+      - ListProducts
+  /register:
     post:
       description: Create Eshop Account
       parameters:
@@ -275,17 +288,4 @@ paths:
       summary: Create Account
       tags:
       - customuser
-  /product:
-    get:
-      description: Display Products
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/controllers.Product'
-      summary: show a list of Products Available
-      tags:
-      - ListProducts
 swagger: "2.0"

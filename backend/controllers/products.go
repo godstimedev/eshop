@@ -29,9 +29,8 @@ type CreatedProduct struct {
 }
 
 type Product struct {
-	Status bool `json:"status"`
-	Data []models.Product `json:"data"`
-
+	Status bool             `json:"status"`
+	Data   []models.Product `json:"data"`
 }
 
 // CreateProduct    godoc
